@@ -26,15 +26,18 @@ GLFWwindow *pWindow;
 float vertices[] =
 {
     // position (x, y, z)    color (r, g, b)
-    -0.40f, -0.50f,  0.00f,  1.0f, 1.0f, 1.0f,
-     0.00f, -0.50f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.20f,  0.00f,  0.00f,  1.0f, 1.0f, 0.0f,
-     0.00f, -0.50f,  0.00f,  1.0f, 1.0f, 0.0f,
-     0.40f, -0.50f,  0.00f,  1.0f, 1.0f, 1.0f,
-     0.20f,  0.00f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.20f,  0.00f,  0.00f,  1.0f, 1.0f, 0.0f,
-     0.20f,  0.00f,  0.00f,  1.0f, 1.0f, 0.0f,
-     0.00f,  0.50f,  0.00f,  1.0f, 1.0f, 1.0f
+    -0.20f, -0.15f,  0.00f,  1.0f, 1.0f, 0.0f,
+    -0.20f,  0.05f,  0.00f,  1.0f, 1.0f, 0.0f,
+    -0.10f, -0.05f,  0.00f,  1.0f, 1.0f, 0.0f,
+    -0.20f, -0.33f,  0.00f,  1.0f, 1.0f, 0.0f,
+    -0.20f, -0.13f,  0.00f,  1.0f, 1.0f, 0.0f,
+    -0.10f, -0.23f,  0.00f,  1.0f, 1.0f, 0.0f,
+    // 0.00f, -0.50f,  0.00f,  1.0f, 1.0f, 0.0f,
+    // 0.40f, -0.50f,  0.00f,  1.0f, 1.0f, 1.0f,
+    // 0.20f,  0.00f,  0.00f,  1.0f, 1.0f, 0.0f,
+    //-0.20f,  0.00f,  0.00f,  1.0f, 1.0f, 0.0f,
+    // 0.20f,  0.00f,  0.00f,  1.0f, 1.0f, 0.0f,
+    // 0.00f,  0.50f,  0.00f,  1.0f, 1.0f, 1.0f
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
@@ -87,30 +90,24 @@ void render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // compute a value for the glow amount for this frame
-    float glow = fabs(sin(glfwGetTime() / 3.0f)) / 2.0f + 0.5f;
-
-    // scale the diagram over time
-    float scale = sin(glfwGetTime() / 5.0f);
-
-    // move the diagram in a circle over time
-    float x_offset = sin(glfwGetTime());
-    float y_offset = cos(glfwGetTime());
-
-    // change RGB colors over time
-    float r_offset = fabs(sin(glfwGetTime()));
-    float g_offset = fabs(sin(glfwGetTime()/2));
-    float b_offset = fabs(sin(glfwGetTime()/4));
+    float glow = fabs(sin(glfwGetTime() / 3.0f)) / 2 + 0.5f;
+    
+    float XAxis = sin(glfwGetTime())/2;
+    float YAxis = cos(glfwGetTime())/2;
+    float red = fabs(sin(glfwGetTime()));
+    float green = fabs(sin(glfwGetTime() / 4));
+    float blue = fabs(sin(glfwGetTime() / 8));
 
     // using our shader program...
     glUseProgram(shader);
 
+    glUniform1f(glGetUniformLocation(shader, "XAxis"), XAxis);
+    glUniform1f(glGetUniformLocation(shader, "YAxis"), YAxis);
+    glUniform3f(glGetUniformLocation(shader, "color"), red, green, blue);
+
     // ... set the uniform variables of the shader...
     // (in this case, simply set the value of the glow)
     glUniform1f(glGetUniformLocation(shader, "glow"), glow);
-    glUniform1f(glGetUniformLocation(shader, "scale"), scale);
-    glUniform1f(glGetUniformLocation(shader, "x_offset"), x_offset);
-    glUniform1f(glGetUniformLocation(shader, "y_offset"), y_offset);
-    glUniform3f(glGetUniformLocation(shader, "rgb_offset"), r_offset, b_offset, g_offset);
 
     // ... then draw our triangles
     glBindVertexArray(vao);
