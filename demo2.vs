@@ -18,6 +18,6 @@ uniform vec3 color;
 
 void main()
 {
-    gl_Position = vec4(vertexPosition, 1.0f);
-    shaderColor = vertexColor;
+    gl_Position = vec4(vertexPosition.x, vertexPosition.y, vertexPosition.z, 1.0f);
+    shaderColor = color;
 }
