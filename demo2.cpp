@@ -26,24 +26,21 @@ GLFWwindow *pWindow;
 float vertices[] =
 {
     // position (x, y, z)    color (r, g, b)
-    -0.20f, -0.15f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.20f,  0.05f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.10f, -0.05f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.20f, -0.33f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.20f, -0.13f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.10f, -0.23f,  0.00f,  1.0f, 1.0f, 0.0f,
+    -0.15f,  0.25f,  0.00f,  1.0f, 1.0f, 0.0f,  //0
+    -0.25f,  0.20f,  0.00f,  1.0f, 1.0f, 0.0f,  //1
+    -0.15f,  0.20f,  0.00f,  1.0f, 1.0f, 0.0f,  //2
+    -0.25f,  0.25f,  0.00f,  1.0f, 1.0f, 0.0f,  //3
+};
 
-    -0.15f,  0.25f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.25f,  0.20f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.15f,  0.20f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.15f,  0.25f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.25f,  0.25f,  0.00f,  1.0f, 1.0f, 0.0f,
-    -0.25f,  0.20f,  0.00f,  1.0f, 1.0f, 0.0f,
+GLuint indices[] {
+    0, 1, 2,
+    0, 3, 1,
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
 GLuint vao;         // vertex array object (stores the render state for our vertex array)
 GLuint vbo;         // vertex buffer object (reserves GPU memory for our vertex array)
+GLuint ebo;
 GLuint shader;      // combined vertex and fragment shader
 
 // called by the main function to do initial setup, such as uploading vertex
@@ -53,6 +50,7 @@ bool setup()
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
+    glGenBuffers(1, &ebo);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao);
@@ -60,6 +58,9 @@ bool setup()
     // upload our vertex array data to the newly-created VBO
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // on the VAO, register the current VBO with the following vertex attribute layout:
     // - the stride length of the vertex array is 6 floats (6 * sizeof(float))
@@ -112,7 +113,7 @@ void render()
 
     // ... then draw our triangles
     glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (6 * sizeof(float)));
+    glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 }
 
 /*****************************************************************************/
