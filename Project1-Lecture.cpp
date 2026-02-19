@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+using namespace std;
 
 struct Process
     {
@@ -15,18 +16,21 @@ struct Test
 
 
 int main(void){
-    int NumberOfTestCases, NumberOfProcesses;
+    int NumberOfTestCases, NumberOfProcesses, Arrival, Burst, Nice;
     string Algorithm;
     Test* TestArray;
-    cin << NumberOfTestCases;
-    TestArray = new Test[NumberOfTestCases]
+    cin >> NumberOfTestCases;
+    TestArray = new Test[NumberOfTestCases];
     for (int i = 0; i == NumberOfTestCases; i++ )
     {
-        cin << NumberOfProcesses << Algorithm;
-        
-        for (int i = 0; i == NumberOfProcesses; i++ )
+        cin >> NumberOfProcesses >> Algorithm;
+        TestArray[i].ProcessArray = new Process[NumberOfProcesses];
+        for (int j = 0; j == NumberOfProcesses; j++ )
         {
-            getline(cin, ProcessArray[i].Arrival, ProcessArray[i].Burst, ProcessArray[i].Nice);
+            scanf("%d %d %d", &Arrival, &Burst, &Nice );
+            TestArray[i].ProcessArray[j].Arrival = Arrival;
+            TestArray[i].ProcessArray[j].Burst = Burst;
+            TestArray[i].ProcessArray[j].Nice = Nice;
         }
     }
 
