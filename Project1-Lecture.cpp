@@ -84,19 +84,23 @@ int main(void){
 
         if (currentAlgo == "FCFS")
         {
+            cout << to_string(currentTest.NumberOfProcesses) << " " << currentAlgo << endl;
+            totalTime = 0;
             for (int j = 0; j < currentTest.NumberOfProcesses; j++)
             {
                 Process runningProcess = readyQueue[j];
-
-                totalTime += (runningProcess.Arrival + runningProcess.Burst) - totalTime;
+                
+                if (totalTime < runningProcess.Arrival)
+                {
+                    totalTime += (runningProcess.Arrival + runningProcess.Burst);
+                    cout << to_string(totalTime) << " " << to_string(processIndex[j]);
+                }
+                else
+                {
+                    totalTime += runningProcess.Burst;
+                    cout << to_string(totalTime) << " " << to_string(processIndex[j]);
+                }
                 burstTime += runningProcess.Burst;
-            }
-
-            cout << to_string(currentTest.NumberOfProcesses) << " " << currentAlgo << endl;
-
-            for (int j = 0; j < currentTest.NumberOfProcesses; j++)
-            {
-                cout << to_string(readyQueue[j].Arrival) << " " << to_string(processIndex[j]);
                 cout << " " << to_string(readyQueue[j].Burst) << "X" << endl;
             }
         }
