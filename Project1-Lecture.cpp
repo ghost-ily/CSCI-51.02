@@ -92,13 +92,14 @@ int main(void){
                 
                 if (totalTime < runningProcess.Arrival)
                 {
-                    totalTime += (runningProcess.Arrival + runningProcess.Burst);
-                    cout << to_string(totalTime) << " " << to_string(processIndex[j]);
+                    totalTime = (runningProcess.Arrival);
+                    cout << to_string(totalTime) << " " << to_string(processIndex[j] + 1);
+                    totalTime += runningProcess.Burst;
                 }
                 else
                 {
+                    cout << to_string(totalTime) << " " << to_string(processIndex[j] + 1);
                     totalTime += runningProcess.Burst;
-                    cout << to_string(totalTime) << " " << to_string(processIndex[j]);
                 }
                 burstTime += runningProcess.Burst;
                 cout << " " << to_string(readyQueue[j].Burst) << "X" << endl;
