@@ -39,9 +39,9 @@ void printStats(Process readyQueue[], int processIndex[], int n, int totalTime, 
     double totalResponse = 0;
 
     cout << "Waiting times:" << endl;
-    for (int p = 0; p < n; p++)
+    for (int p = 0; p <= n; p++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j <= n; j++)
         {
             if (processIndex[j] == p)
             {
@@ -53,8 +53,8 @@ void printStats(Process readyQueue[], int processIndex[], int n, int totalTime, 
                 totalTurnaround += turnaround;
                 totalResponse += response;
 
-                cout << " Process " << p + 1 << ": " << waiting << "ns" << endl;
-                break;  
+                cout << " Process " << p << ": " << waiting << "ns" << endl;
+                break;
             }
         }
     }
@@ -62,14 +62,14 @@ void printStats(Process readyQueue[], int processIndex[], int n, int totalTime, 
     cout << "Average waiting time: " << totalWaiting / n << "ns" << endl;
     cout << "Turnaround times:" << endl;
 
-    for (int p = 0; p < n; p++)
+    for (int p = 0; p <= n; p++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j <= n; j++)
         {
             if (processIndex[j] == p)
             {
                 int turnaround = readyQueue[j].CompletionTime - readyQueue[j].Arrival;
-                cout << " Process " << p + 1 << ": " << turnaround << "ns" << endl;
+                cout << " Process " << p << ": " << turnaround << "ns" << endl;
                 break;
             }
         }
@@ -78,14 +78,14 @@ void printStats(Process readyQueue[], int processIndex[], int n, int totalTime, 
     cout << "Average turnaround time: " << totalTurnaround / n << "ns" << endl;
     cout << "Response times:" << endl;
 
-    for (int p = 0; p < n; p++)
+    for (int p = 0; p <= n; p++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j <= n; j++)
         {
             if (processIndex[j] == p)
             {
                 int response = readyQueue[j].StartTime - readyQueue[j].Arrival;
-                cout << " Process " << p + 1 << ": " << response << "ns" << endl;
+                cout << " Process " << p << ": " << response << "ns" << endl;
                 break;
             }
         }
@@ -137,7 +137,7 @@ int main(void){
         int processIndex[currentTest.NumberOfProcesses];
 
         for (int j = 0; j < currentTest.NumberOfProcesses; j++){
-            processIndex[j] = j;
+            processIndex[j] = j + 1;
         }
 
         /*
@@ -187,7 +187,7 @@ int main(void){
                 //Record the time when process starts.
                 readyQueue[j].StartTime = totalTime;
 
-                cout << totalTime << " " << processIndex[j] + 1;
+                cout << totalTime << " " << processIndex[j];
 
                 totalTime += runningProcess.Burst;   // Advance time
                 burstTime += runningProcess.Burst;   // Add to total CPU usage
@@ -244,7 +244,7 @@ int main(void){
                 readyQueue[shortestIndex].StartTime = totalTime;
 
                 cout << totalTime << " "
-                    << processIndex[shortestIndex] + 1;
+                    << processIndex[shortestIndex];
 
                 totalTime += readyQueue[shortestIndex].Burst;
                 burstTime += readyQueue[shortestIndex].Burst;
@@ -271,78 +271,127 @@ int main(void){
             idleTime = 0;
 
             int completed = 0;
-            int lastProcess = -1; ///Stores the index of the process that ran in the previous time unit
+            int lastProcess = -1; // Stores the index of the process that ran in the previous time unit
             int blockStart = 0;   // track start of current block
 
             while (completed < currentTest.NumberOfProcesses)
             {
-            int shortestIndex = -1;
-            int shortestRemaining = 1000000;
+                int shortestIndex = -1;
+                int shortestRemaining = 1000000;
 
-            // Find process with smallest remaining time
-            for (int j = 0; j < currentTest.NumberOfProcesses; j++)
-            {
-                if (readyQueue[j].Arrival <= totalTime &&
-                    readyQueue[j].Remaining > 0)
+                // Find process with smallest remaining time
+                for (int j = 0; j < currentTest.NumberOfProcesses; j++)
                 {
-                    if (shortestIndex == -1 ||
-                        readyQueue[j].Remaining < shortestRemaining)
+                    if (readyQueue[j].Arrival <= totalTime &&
+                        readyQueue[j].Remaining > 0)
                     {
-                        shortestRemaining = readyQueue[j].Remaining;
-                        shortestIndex = j;
+                        if (shortestIndex == -1 ||
+                            readyQueue[j].Remaining < shortestRemaining)
+                        {
+                            shortestRemaining = readyQueue[j].Remaining;
+                            shortestIndex = j;
+                        }
                     }
                 }
-            }
 
-            // CPU idle
-            if (shortestIndex == -1)
-            {
-                totalTime++;
-                idleTime++;
-                continue;
-            }
-
-
-            // checks if current selected process is different from the previous one (context switch detection)
-            if (lastProcess != shortestIndex)
-            {
-                if (lastProcess != -1)
+                // CPU idle
+                if (shortestIndex == -1)
                 {
-                cout << blockStart << " " << processIndex[lastProcess] + 1 << " " << totalTime - blockStart << endl;
+                    totalTime++;
+                    idleTime++;
+                    continue;
                 }
-                blockStart = totalTime;
-                lastProcess = shortestIndex;
+
+
+                // checks if current selected process is different from the previous one (context switch detection)
+                if (lastProcess != shortestIndex)
+                {
+                    if (lastProcess != -1)
+                    {
+                    cout << blockStart << " " << processIndex[lastProcess] << " " << totalTime - blockStart << endl;
+                    }
+                    blockStart = totalTime;
+                    lastProcess = shortestIndex;
+                }
+
+                // Record start time
+                if (!readyQueue[shortestIndex].Started)
+                {
+                    readyQueue[shortestIndex].StartTime = totalTime;
+                    readyQueue[shortestIndex].Started = true;
+                }
+                readyQueue[shortestIndex].Remaining--;
+                burstTime++;
+                totalTime++;
+
+            // If process finishes then print block with X
+                if (readyQueue[shortestIndex].Remaining == 0)
+                {
+                    readyQueue[shortestIndex].CompletionTime = totalTime;
+                    cout << blockStart << " " << processIndex[shortestIndex] << " " << totalTime - blockStart << "X" << endl;
+                    completed++;
+                    lastProcess = -1;
+                }
             }
 
-            // Record start time
-            if (!readyQueue[shortestIndex].Started)
-            {
-                readyQueue[shortestIndex].StartTime = totalTime;
-                readyQueue[shortestIndex].Started = true;
-            }
-            readyQueue[shortestIndex].Remaining--;
-            burstTime++;
-            totalTime++;
+            printStats(readyQueue, processIndex, currentTest.NumberOfProcesses, totalTime, burstTime);
+        }
 
-         // If process finishes then print block with X
-            if (readyQueue[shortestIndex].Remaining == 0)
+        //===== RR =====
+        if (currentAlgo == "RR")
+        {
+            cout << i + 1 << " " << currentAlgo << endl;
+
+            totalTime = 0;
+            burstTime = 0;
+            idleTime = 0;
+
+            int finishedProcesses = 0;
+            int q = currentTest.Quantum;
+            int runningProcess = 0;
+
+            while (finishedProcesses < currentTest.NumberOfProcesses)
             {
-                readyQueue[shortestIndex].CompletionTime = totalTime;
-                cout << blockStart << " " << processIndex[shortestIndex] + 1 << " " << totalTime - blockStart << "X" << endl;
-                completed++;
-                lastProcess = -1;
+                while (totalTime >= readyQueue[runningProcess].Arrival &&
+                    readyQueue[runningProcess].Remaining > 0)
+                {
+                    cout << totalTime << " ";
+
+                    // execTime = Remaining if less than or equal to quantum
+                    int execTime = readyQueue[runningProcess].Remaining;
+                    if (q < execTime)
+                    {
+                        execTime = q;
+                    }
+
+                    readyQueue[runningProcess].Remaining -= execTime;
+
+                    cout << processIndex[runningProcess] << " ";
+
+                    if (readyQueue[runningProcess].Remaining == 0)
+                    {
+                        cout << execTime;
+                        cout << "X" << endl;
+                        finishedProcesses++;
+                    }
+                    else
+                    {
+                        cout << execTime << endl;
+                    }
+
+                    runningProcess++;
+                    if (runningProcess > currentTest.NumberOfProcesses)
+                    {
+                        runningProcess = 0;
+                    }
+                }
+
+                if (totalTime < readyQueue[runningProcess].Arrival)
+                {
+                    totalTime += readyQueue[runningProcess].Arrival - totalTime;
+                    idleTime += readyQueue[runningProcess].Arrival - totalTime;
+                }
             }
         }
-        printStats(readyQueue, processIndex, currentTest.NumberOfProcesses, totalTime, burstTime);
- 
-    }
-
-    /*
-        Deallocating memory
-    
-    free(TestArray);
-    TestArray = NULL;
-    return 0;
-    */
     }
 }
