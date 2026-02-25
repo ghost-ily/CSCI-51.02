@@ -337,6 +337,80 @@ int main(void){
             printStats(readyQueue, processIndex, currentTest.NumberOfProcesses, totalTime, burstTime);
         }
 
+        // ===== P =====
+        if (currentAlgo == "P")
+        {
+            cout << i + 1 << " " << currentAlgo << endl;
+
+            totalTime = 0;
+            burstTime = 0;
+
+            int finishedProcesses = 0;
+            int currentPriority = 0;
+            int lastProcess = -1;
+            int runningIndex = -1;
+            int blockStart = 0;
+            bool lowestFound = true;
+
+            while (finishedProcesses < currentTest.NumberOfProcesses)
+            {
+                /*
+                for every process in the readyQueue, search for the
+                process that has arrived and with the highest priority.
+                */
+                while (lowestFound)
+                {
+                    for (int j = 0; j < currentTest.NumberOfProcesses; j++)
+                    {
+                        if (totalTime >= readyQueue[j].Arrival &&
+                            readyQueue[j].Remaining > 0)
+                        {
+                            if (currentPriority == readyQueue[j].Nice)
+                            {
+                                runningIndex = j;
+                                lowestFound = false;
+                                break;
+                            }
+                        }
+                    }
+                    currentPriority++;
+                    if (currentPriority > currentTest.NumberOfProcesses)
+                    {
+                        currentPriority = 0;
+                    }
+                }
+
+                if (readyQueue[runningIndex].Started == false)
+                {
+                    readyQueue[runningIndex].StartTime = totalTime;
+                    readyQueue[runningIndex].Started = true;
+                }
+
+                if (lastProcess != runningIndex)
+                {
+                    if (lastProcess != -1)
+                    {
+                        cout << blockStart << " " << processIndex[lastProcess] << " " << totalTime - blockStart << endl;
+                    }
+                    blockStart = totalTime;
+                    lastProcess = runningIndex;
+                }
+                readyQueue[runningIndex].Remaining--;
+                burstTime++;
+                totalTime++;
+                
+                if (readyQueue[runningIndex].Remaining == 0)
+                {
+                    readyQueue[runningIndex].CompletionTime = totalTime;
+                    cout << blockStart << " " << processIndex[lastProcess] << " " << totalTime - blockStart << "X" << endl;
+                    finishedProcesses++;
+                    lastProcess = -1;
+                }
+                lowestFound = true;
+                currentPriority = 0;
+            }
+        }
+
         //===== RR =====
         if (currentAlgo == "RR")
         {
