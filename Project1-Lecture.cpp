@@ -39,7 +39,7 @@ void printStats(Process readyQueue[], int processIndex[], int n, int totalTime, 
     double totalResponse = 0;
 
     cout << "Waiting times:" << endl;
-    for (int p = 0; p <= n; p++)
+    for (int p = 1; p <= n; p++)
     {
         for (int j = 0; j <= n; j++)
         {
@@ -62,7 +62,7 @@ void printStats(Process readyQueue[], int processIndex[], int n, int totalTime, 
     cout << "Average waiting time: " << totalWaiting / n << "ns" << endl;
     cout << "Turnaround times:" << endl;
 
-    for (int p = 0; p <= n; p++)
+    for (int p = 1; p <= n; p++)
     {
         for (int j = 0; j <= n; j++)
         {
@@ -78,7 +78,7 @@ void printStats(Process readyQueue[], int processIndex[], int n, int totalTime, 
     cout << "Average turnaround time: " << totalTurnaround / n << "ns" << endl;
     cout << "Response times:" << endl;
 
-    for (int p = 0; p <= n; p++)
+    for (int p = 1; p <= n; p++)
     {
         for (int j = 0; j <= n; j++)
         {
@@ -348,50 +348,59 @@ int main(void){
 
             int finishedProcesses = 0;
             int q = currentTest.Quantum;
-            int runningProcess = 0;
+            int* newProcessIndex = new int[currentTest.NumberOfProcesses];
+            Process* arrivedProcesses = new Process[currentTest.NumberOfProcesses];
 
+            for (int j = 0; j < currentTest.NumberOfProcesses; j++)
+            {
+                arrivedProcesses[currentTest.NumberOfProcesses - j] = readyQueue[j];
+                newProcessIndex[currentTest.NumberOfProcesses - j] = processIndex[j];
+            }
+            
             while (finishedProcesses < currentTest.NumberOfProcesses)
             {
-                while (totalTime >= readyQueue[runningProcess].Arrival &&
-                    readyQueue[runningProcess].Remaining > 0)
+
+                for (int j = 0; j <= currentTest.NumberOfProcesses; j++)
                 {
-                    cout << totalTime << " ";
-
-                    // execTime = Remaining if less than or equal to quantum
-                    int execTime = readyQueue[runningProcess].Remaining;
-                    if (q < execTime)
+                    if (totalTime >= arrivedProcesses[j].Arrival &&
+                        arrivedProcesses[j].Remaining > 0 &&
+                        arrivedProcesses[j].Burst > 0)
                     {
-                        execTime = q;
+                        cout << totalTime << " ";
+
+                        int execTime = arrivedProcesses[j].Remaining;
+                        if (q < execTime)
+                        {
+                            execTime = q;
+                        }
+
+                        arrivedProcesses[j].Remaining -= execTime;
+                        if (arrivedProcesses[j].Started == false)
+                        {
+                            arrivedProcesses[j].Started = true;
+                            readyQueue[currentTest.NumberOfProcesses-j].StartTime = totalTime;
+                        }
+                        totalTime += execTime;
+                        burstTime += execTime;
+
+                        cout << newProcessIndex[j] << " ";
+
+                        if (arrivedProcesses[j].Remaining == 0)
+                        {
+                            readyQueue[currentTest.NumberOfProcesses-j].CompletionTime = totalTime;
+                            cout << execTime;
+                            cout << "X" << endl;
+                            finishedProcesses++;
+                        }
+                        else
+                        {
+                            cout << execTime << endl;
+                        }
                     }
-
-                    readyQueue[runningProcess].Remaining -= execTime;
-
-                    cout << processIndex[runningProcess] << " ";
-
-                    if (readyQueue[runningProcess].Remaining == 0)
-                    {
-                        cout << execTime;
-                        cout << "X" << endl;
-                        finishedProcesses++;
-                    }
-                    else
-                    {
-                        cout << execTime << endl;
-                    }
-
-                    runningProcess++;
-                    if (runningProcess > currentTest.NumberOfProcesses)
-                    {
-                        runningProcess = 0;
-                    }
-                }
-
-                if (totalTime < readyQueue[runningProcess].Arrival)
-                {
-                    totalTime += readyQueue[runningProcess].Arrival - totalTime;
-                    idleTime += readyQueue[runningProcess].Arrival - totalTime;
                 }
             }
+
+            printStats(readyQueue, processIndex, currentTest.NumberOfProcesses, totalTime, burstTime);
         }
     }
 }
