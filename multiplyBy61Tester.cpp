@@ -1,16 +1,14 @@
 #include <iostream>
 #include "IntArray.h"
-extern void multiplyByX(IntArray *p, int x);
-
-int main() {
+extern void multiplyBy61(IntArray *p);
+int main()
+{
     IntArray arr;
     arr.size = 5;
     arr.elements = new int[arr.size]{1, 2, 3, 4, 5};
-    int x = 10;
     IntArray* p = &arr;
 
-    // No & needed here! Looks like a normal variable.
-    multiplyByX(p, x);
+    multiplyBy61(p);
 
     for (int i = 0; i < arr.size; i++) {
         std::cout << arr.elements[i] << " ";
