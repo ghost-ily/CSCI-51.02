@@ -1,0 +1,5 @@
+include/
+src/
+lib-mingw-w64/
+lib-universal/
+test
