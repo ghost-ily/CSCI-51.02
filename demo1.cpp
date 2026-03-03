@@ -25,16 +25,110 @@ GLFWwindow *pWindow;
 
 // define a vertex array to hold our vertices
 float vertices[] =
-{
-    -0.40f, -0.50f,  0.00f,
-     0.40f, -0.50f,  0.00f,
-     0.00f,  0.50f,  0.00f
+{   
+
+    //vertex coordinates    //vertex color      //vertex texture coordinates
+
+    //middle square
+    -0.05f, -0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+     0.05f, -0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+    -0.05f,  0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+
+     0.05f,  0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+    -0.05f,  0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+     0.05f, -0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+
+    //top triangles
+     0.00f,  0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+     0.00f,  0.70f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+     0.20f,  0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+
+     0.20f,  0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+     0.00f,  0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+     0.05f,  0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+
+    // 0.00f,  0.70f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+    //-0.10f,  0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+    // 0.00f,  0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+
+    -0.02f,  0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+    -0.02f,  0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+    -0.20f,  0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+
+    -0.02f,  0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+    -0.20f,  0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+    -0.05f,  0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+    
+    //down triangles
+     0.00f, -0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+     0.00f, -0.70f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+    -0.20f, -0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+
+     0.00f, -0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+    -0.05f, -0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+    -0.20f, -0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+
+    // 0.00f, -0.70f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+    // 0.00f, -0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+    // 0.10f, -0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+
+     0.02f, -0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+     0.02f, -0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+     0.20f, -0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+
+     0.02f, -0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+     0.20f, -0.56f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+     0.05f, -0.15f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+
+    //right triangles
+     0.50f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+     0.08f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+     0.20f, -0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  0.5f, 0.0f,
+
+     0.08f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+     0.08f, -0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+     0.20f, -0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+
+    // 0.50f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+    // 0.40f,  0.14f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+    // 0.40f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+    
+     0.30f,  0.03f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+     0.08f,  0.03f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+     0.30f,  0.52f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.5f,
+
+     0.08f,  0.03f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+     0.08f,  0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+     0.30f,  0.52f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+
+    //left triangles
+    -0.50f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+    -0.08f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+    -0.20f,  0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+    
+    -0.08f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+    -0.08f,  0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+    -0.20f,  0.42f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+
+    //-0.50f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+    //-0.40f, -0.14f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+    //-0.40f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+
+    -0.30f, -0.03f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.5f,
+    -0.08f, -0.03f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.5f,
+    -0.30f, -0.52f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+
+    -0.08f, -0.03f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.5f,
+    -0.08f, -0.10f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.5f,
+    -0.30f, -0.52f, 0.00f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
 GLuint vao;         // vertex array object (stores the render state for our vertex array)
 GLuint vbo;         // vertex buffer object (reserves GPU memory for our vertex array)
 GLuint shader;      // combined vertex and fragment shader
+GLuint texture1;
+GLuint texture2;
 
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
@@ -57,11 +151,15 @@ bool setup()
     // - ... its values will NOT be normalized (GL_FALSE)
     // - ... the stride length is the number of bytes of all 3 floats of each vertex (hence, 3 * sizeof(float))
     // - ... and we start at the beginning of the array (hence, (void*) 0)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (3 * sizeof(float)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (6 * sizeof(float)));
 
     // enable the newly-created layout location 0;
     // this shall be used by our vertex shader to read the vertex's x, y, and z
     glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
 
     // important: if you have more vertex arrays to draw, make sure you separately define them
     // with unique VAO and VBO IDs, and follow the same process above to upload them to the GPU
@@ -70,6 +168,12 @@ bool setup()
     shader = gdevLoadShader("demo1.vs", "demo1.fs");
     if (! shader)
         return false;
+
+    texture1 = gdevLoadTexture("wall.png", GL_REPEAT, true, true);
+    if (! texture1) return false;
+
+    texture2 = gdevLoadTexture("hl.png", GL_REPEAT, true, true);
+    if (! texture2) return false;
 
     return true;
 }
@@ -84,9 +188,18 @@ void render()
     // using our shader program...
     glUseProgram(shader);
 
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture1);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+
+    glUniform1i(glGetUniformLocation(shader, "shaderTextureA"), 0);
+    glUniform1i(glGetUniformLocation(shader, "shaderTextureB"), 1);
+
     // ... draw our triangles
     glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (3 * sizeof(float)));
+    glDrawArrays((GL_TRIANGLES), 0, sizeof(vertices) / (8 * sizeof(float)));
+    //                                                  'stride' of each vertice
 }
 
 /*****************************************************************************/
