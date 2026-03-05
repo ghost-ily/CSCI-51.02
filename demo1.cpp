@@ -26,81 +26,79 @@ GLFWwindow *pWindow;
 float vertices[] =
 {   
 
-    //vertex coordinates    //vertex color      //vertex texture coordinates
+    //vertex 
+    //coordinates           color              texture coords   movement
+     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,    0.05f,  0.50f,
+     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,    0.05f,  0.50f,
+     0.11f,  0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.61f, 0.78f,    0.05f,  0.50f,
 
-    //top triangles
-     //
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,
-     0.11f,  0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.61f, 0.78f,
-
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,
-    -0.26f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.21f, 1.00f,
+     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,   -0.05f,  0.50f,
+     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,   -0.05f,  0.50f,
+    -0.26f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.21f, 1.00f,   -0.05f,  0.50f,
      
-     //
-     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.00f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,
-     0.11f,  0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.61f, 0.78f,
+     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.00f,    0.10f,  0.50f,
+     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,    0.10f,  0.50f,
+     0.11f,  0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.61f, 0.78f,    0.10f,  0.50f,
 
     
     //down triangles
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.00f,
-    -0.11f, -0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.36f, 0.22f,
+     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,    0.50f, -0.50f,
+     0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.00f,    0.50f, -0.50f,
+    -0.11f, -0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.36f, 0.22f,    0.50f, -0.50f,
 
-     0.00f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.0f,
-     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.0f,
+     0.00f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,    0.50f, -0.50f,
+     0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.0f,     0.50f, -0.50f,
+     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.0f,     0.50f, -0.50f,
 
-     -0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.00f,
-     -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.50f,
-     -0.27f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.50f,
+     -0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.00f,   0.50f, -0.50f,
+     -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.50f,   0.50f, -0.50f,
+     -0.27f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.50f,   0.50f, -0.50f,
 
-     -0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.00f,
-     -0.27f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.50f,
-     -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.00f,
+     -0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.00f,   0.50f, -0.50f,
+     -0.27f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.50f,   0.50f, -0.50f,
+     -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.00f,   0.50f, -0.50f,
 
-      0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.00f,
-     -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.00f,
-     -0.11f, -0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.36f, 0.22f,
+     //
+      0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.00f,   0.50f, -0.50f,
+     -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.00f,   0.50f, -0.50f,
+     -0.11f, -0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.36f, 0.22f,   0.50f, -0.50f,
 
 
     //right triangles
-     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.50f,
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.0f,
+     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.50f,     0.50f, -0.50f,
+     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,    0.50f, -0.50f,
+     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.0f,     0.50f, -0.50f,
     
      //
-     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.5f, 0.5f,
-     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.0f,
+     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,    0.50f, -0.50f,
+     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.5f, 0.5f,      0.50f, -0.50f,
+     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.0f,     0.50f, -0.50f,
 
-     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.50f,
-     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.00f,
-     0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.00f,
+     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.50f,    0.50f, -0.50f,
+     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.00f,    0.50f, -0.50f,
+     0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.00f,    0.50f, -0.50f,
 
-     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.50f,
-     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,
-     0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 1.00f,
+     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.50f,    0.50f, -0.50f,
+     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,    0.50f, -0.50f,
+     0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 1.00f,    0.50f, -0.50f,
 
      //
-     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,
-     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.00f,
-     0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 1.00f,   
+     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,    0.50f, -0.50f,
+     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.00f,    0.50f, -0.50f,
+     0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 1.00f,    0.50f, -0.50f,
 
     //left triangles
-    -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.50f,
-    -0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-    -0.26f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.21f, 1.00f,
+    -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.50f,    0.50f, -0.50f,
+    -0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,    0.50f, -0.50f,
+    -0.26f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.21f, 1.00f,    0.50f, -0.50f,
 
-    -0.27f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.5f,
-    -0.00f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.5f, 0.5f,
-    -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.0f,
+    -0.27f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.5f,     0.50f, -0.50f,
+    -0.00f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.5f, 0.5f,      0.50f, -0.50f,
+    -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.0f,     0.50f, -0.50f,
 
-    -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,   0.00f, 0.5f,
-    -0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,   0.00f, 1.00f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,   0.5f, 1.00f,
+    -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,   0.00f, 0.5f,    0.50f, -0.50f,
+    -0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,   0.00f, 1.00f,   0.50f, -0.50f,
+    -0.26f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,   0.21f, 1.00f,   0.50f, -0.50f,
 
 };
 
@@ -132,15 +130,17 @@ bool setup()
     // - ... its values will NOT be normalized (GL_FALSE)
     // - ... the stride length is the number of bytes of all 3 floats of each vertex (hence, 3 * sizeof(float))
     // - ... and we start at the beginning of the array (hence, (void*) 0)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) 0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (3 * sizeof(float)));
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (6 * sizeof(float)));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*) (3 * sizeof(float)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*) (6 * sizeof(float)));
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*) (8 * sizeof(float)));
 
     // enable the newly-created layout location 0;
     // this shall be used by our vertex shader to read the vertex's x, y, and z
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
     glEnableVertexAttribArray(2);
+    glEnableVertexAttribArray(3);
 
     // important: if you have more vertex arrays to draw, make sure you separately define them
     // with unique VAO and VBO IDs, and follow the same process above to upload them to the GPU
@@ -185,7 +185,7 @@ void render()
 
     // ... draw our triangles
     glBindVertexArray(vao);
-    glDrawArrays((GL_TRIANGLES), 0, sizeof(vertices) / (8 * sizeof(float)));
+    glDrawArrays((GL_TRIANGLES), 0, sizeof(vertices) / (10 * sizeof(float)));
     //                                                  'stride' of each vertice
 }
 
