@@ -19,6 +19,5 @@ void main()
 {
     vec4 colorA = texture(shaderTextureA, shaderTexCoord) * glow1;
     vec4 colorB = texture(shaderTextureB, shaderTexCoord) * glow2;
-    fragmentColor = mix(colorA, colorB, 0.5f);
-    //fragmentColor = vec4(shaderColor, 1.0f) * mix(colorA, colorB, 0.5f);
+    fragmentColor = vec4(shaderColor, 1.0f) * mix(colorA, colorB, 0.5f);
 }
