@@ -176,9 +176,11 @@ void render()
 
     float glow1 = fabs(sin(glfwGetTime() / 5.0f));
     float glow2 = fabs(cos(glfwGetTime() / 5.0f));
+    float scatter = fabs(glow1 * glow1 * glow1 * glow1);
 
     glUniform1f(glGetUniformLocation(shader, "glow1"), glow1);
     glUniform1f(glGetUniformLocation(shader, "glow2"), glow2);
+    glUniform1f(glGetUniformLocation(shader, "scatter"), scatter);
 
     // ... draw our triangles
     glBindVertexArray(vao);
