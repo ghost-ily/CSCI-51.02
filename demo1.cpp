@@ -174,8 +174,8 @@ void render()
     glUniform1i(glGetUniformLocation(shader, "shaderTextureA"), 0);
     glUniform1i(glGetUniformLocation(shader, "shaderTextureB"), 1);
 
-    float glow1 = fabs(sin(glfwGetTime() / 5.0f));
-    float glow2 = fabs(cos(glfwGetTime() / 5.0f));
+    float glow1 = fabs(sin(glfwGetTime() / 2.0f));
+    float glow2 = fabs(cos(glfwGetTime() / 2.0f));
     float scatter = fabs(glow1 * glow1 * glow1 * glow1);
 
     glUniform1f(glGetUniformLocation(shader, "glow1"), glow1);
