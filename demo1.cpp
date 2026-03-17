@@ -23,93 +23,41 @@
 #define WINDOW_TITLE  "Hello Triangle"
 GLFWwindow *pWindow;
 
+// define a vertex array to hold our vertices
 float vertices[] =
-{   
+{
+    // position (x, y, z)   color (r, g, b)
+     0.00f,  0.00f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.50f,  0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.00f,  0.50f, -1.00f, 1.0f, 1.0f, 1.0f,
+    
+     0.00f,  0.00f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.00f,  0.50f, -1.00f, 1.0f, 1.0f, 1.0f,
+    -0.50f,  0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
 
-    //vertex coordinates    //vertex color      //vertex texture coordinates
+     0.00f,  0.00f, -1.00f, 1.0f, 1.0f, 1.0f,
+    -0.50f,  0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
+    -0.50f, -0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
 
-    //top triangles
-     //
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,
-     0.11f,  0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.61f, 0.78f,
+     0.00f,  0.00f, -1.00f, 1.0f, 1.0f, 1.0f,
+    -0.50f, -0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.00f, -0.50f, -1.00f, 1.0f, 1.0f, 1.0f,
 
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,
-    -0.26f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.21f, 1.00f,
+     0.00f,  0.00f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.00f, -0.50f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.50f, -0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
+
+     0.00f,  0.00f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.50f,  0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
+     0.50f, -0.25f, -1.00f, 1.0f, 1.0f, 1.0f,
+
      
-     //
-     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.00f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 1.00f,
-     0.11f,  0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.61f, 0.78f,
-
-    
-    //down triangles
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.00f,
-    -0.11f, -0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.36f, 0.22f,
-
-     0.00f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.0f,
-     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.0f,
-
-     -0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.00f,
-     -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.50f,
-     -0.27f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.50f,
-
-     -0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.00f,
-     -0.27f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.50f,
-     -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.00f,
-
-      0.00f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.00f,
-     -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.00f,
-     -0.11f, -0.37f, 0.00f,  1.0f, 1.0f, 1.0f,  0.36f, 0.22f,
-
-
-    //right triangles
-     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.0f, 0.50f,
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.0f,
-    
-     //
-     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,
-     0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.5f, 0.5f,
-     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.0f,
-
-     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.50f,
-     0.26f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.79f, 0.00f,
-     0.47f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.00f,
-
-     0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 0.50f,
-     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,
-     0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 1.00f,
-
-     //
-     0.37f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.90f, 0.50f,
-     0.19f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.72f, 1.00f,
-     0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  1.00f, 1.00f,   
-
-    //left triangles
-    -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.00f, 0.50f,
-    -0.00f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.50f, 0.50f,
-    -0.26f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.21f, 1.00f,
-
-    -0.27f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.20f, 0.5f,
-    -0.00f, -0.00f, 0.00f,  1.0f, 1.0f, 1.0f,  0.5f, 0.5f,
-    -0.19f, -0.65f, 0.00f,  1.0f, 1.0f, 1.0f,  0.28f, 0.0f,
-
-    -0.47f,  0.00f, 0.00f,  1.0f, 1.0f, 1.0f,   0.00f, 0.5f,
-    -0.47f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,   0.00f, 1.00f,
-     0.00f,  0.65f, 0.00f,  1.0f, 1.0f, 1.0f,   0.5f, 1.00f,
-
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
 GLuint vao;         // vertex array object (stores the render state for our vertex array)
 GLuint vbo;         // vertex buffer object (reserves GPU memory for our vertex array)
 GLuint shader;      // combined vertex and fragment shader
-GLuint texture1;
-GLuint texture2;
 
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
@@ -132,15 +80,12 @@ bool setup()
     // - ... its values will NOT be normalized (GL_FALSE)
     // - ... the stride length is the number of bytes of all 3 floats of each vertex (hence, 3 * sizeof(float))
     // - ... and we start at the beginning of the array (hence, (void*) 0)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) 0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (3 * sizeof(float)));
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (6 * sizeof(float)));
-
-    // enable the newly-created layout location 0;
-    // this shall be used by our vertex shader to read the vertex's x, y, and z
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+    (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+    (void*) (3 * sizeof(float)));
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
-    glEnableVertexAttribArray(2);
 
     // important: if you have more vertex arrays to draw, make sure you separately define them
     // with unique VAO and VBO IDs, and follow the same process above to upload them to the GPU
@@ -149,12 +94,6 @@ bool setup()
     shader = gdevLoadShader("demo1.vs", "demo1.fs");
     if (! shader)
         return false;
-
-    texture1 = gdevLoadTexture("wall.png", GL_REPEAT, true, true);
-    if (! texture1) return false;
-
-    texture2 = gdevLoadTexture("hl.png", GL_REPEAT, true, true);
-    if (! texture2) return false;
 
     return true;
 }
@@ -169,24 +108,29 @@ void render()
     // using our shader program...
     glUseProgram(shader);
 
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture1);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture2);
+    glEnable(GL_DEPTH_TEST); // enable OpenGL's hidden surface removal
+    
+    glm::mat4 matrix;
+    matrix = glm::perspective(glm::radians(60.0f),
+            (float) WINDOW_WIDTH / WINDOW_HEIGHT,
+            0.1f,
+            100.0f);
 
-    glUniform1i(glGetUniformLocation(shader, "shaderTextureA"), 0);
-    glUniform1i(glGetUniformLocation(shader, "shaderTextureB"), 1);
+    matrix = glm::translate(matrix, glm::vec3(0.0f, 0.0f, -5.0f));
 
-    float glow1 = fabs(sin(glfwGetTime() / 5.0f));
-    float glow2 = fabs(cos(glfwGetTime() / 5.0f));
+    //matrix = glm::rotate(matrix, glm::radians(-90.0f),
+    //        glm::vec3(1.0f, 0.0f, 0.0f));
+            
+    //matrix = glm::scale(matrix, glm::vec3(5.0f, 5.0f, 1.0f));
 
-    glUniform1f(glGetUniformLocation(shader, "glow1"), glow1);
-    glUniform1f(glGetUniformLocation(shader, "glow2"), glow2);
+    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
+            1, GL_FALSE, glm::value_ptr(matrix));
+        
+    
 
     // ... draw our triangles
     glBindVertexArray(vao);
-    glDrawArrays((GL_TRIANGLES), 0, sizeof(vertices) / (8 * sizeof(float)));
-    //                                                  'stride' of each vertice
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (3 * sizeof(float)));
 }
 
 /*****************************************************************************/
