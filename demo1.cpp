@@ -183,6 +183,7 @@ float vertices[] =
 
     0.383f, -0.321f, -1.000f, 0.00f, 1.00f, 0.00f,
     0.500f, 0.000f, -0.800f, 0.00f, 1.00f, 0.00f,
+    0.500f, 0.000f, -0.800f, 0.00f, 1.00f, 0.00f,
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
