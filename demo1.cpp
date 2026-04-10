@@ -183,7 +183,7 @@ float vertices[] =
 
     0.383f, -0.321f, -1.000f, 0.00f, 1.00f, 0.00f,
     0.500f, 0.000f, -0.800f, 0.00f, 1.00f, 0.00f,
-    0.500f, 0.000f, -0.800f, 0.00f, 1.00f, 0.00f,
+    0.000f, 0.000f, -0.800f, 0.00f, 1.00f, 0.00f,
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
@@ -248,7 +248,7 @@ void render()
             0.1f,
             100.0f);
 
-    matrix = glm::translate(matrix, glm::vec3(0.0f, 0.0f, -5.0f));
+    matrix = glm::translate(matrix, glm::vec3(0.0f, 0.0f, -10.0f));
 
     matrix = glm::rotate(matrix, glm::radians(-90.0f),
             glm::vec3(1.0f, 0.0f, 0.0f));
