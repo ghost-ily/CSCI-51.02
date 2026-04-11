@@ -548,6 +548,9 @@ bool setup()
     return true;
 }
 
+
+float angle = 0;
+
 // called by the main function to do rendering per frame
 void render()
 {
@@ -572,8 +575,8 @@ void render()
             
     modelMatrix = glm::scale(modelMatrix, glm::vec3(3.0f, 3.0f, 2.0f));
 
-    float camX = sin(glfwGetTime()) * 10.0f;
-    float camZ = cos(glfwGetTime()) * 10.0f;
+    float camX = sin(angle) * 10.0f;
+    float camZ = cos(angle) * 10.0f;
 
     glm::vec3 eyePosition = glm::vec3(camX, 2.0f, camZ);
     glm::vec3 targetPosition = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -603,6 +606,10 @@ void handleKeys(GLFWwindow* pWindow, int key, int scancode, int action, int mode
     // pressing Esc closes the window
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(pWindow, GL_TRUE);
+    if (key == GLFW_KEY_A && action == GLFW_PRESS)
+        angle += 0.5;
+    if (key == GLFW_KEY_D && action == GLFW_PRESS)
+        angle -= 0.5;
 }
 
 // handler called by GLFW when the window is resized
