@@ -183,7 +183,7 @@ float vertices[] =
 
     0.383f, -0.321f, -1.000f, 0.00f, 1.00f, 0.00f,
     0.500f, 0.000f, -0.800f, 0.00f, 1.00f, 0.00f,
-    0.000f, 0.000f, -0.800f, 0.00f, 1.00f, 0.00f,
+    0.383f, -0.321f, -0.800f, 0.00f, 1.00f, 0.00f,
 
     //LEFT OBJECT
     //FRONT FACE
@@ -342,7 +342,7 @@ float vertices[] =
 
     -0.117f, -0.321f, 0.600f, 0.00f, 1.00f, 0.00f,
     0.000f, 0.000f, 0.400f, 0.00f, 1.00f, 0.00f,
-   -0.500f, 0.000f, 0.400f, 0.00f, 1.00f, 0.00f,
+   -0.117f, -0.321f, 0.400f, 0.00f, 1.00f, 0.00f,
 
    //RIGHT OBJECT
    //FRONT FACE
@@ -501,7 +501,7 @@ float vertices[] =
 
     0.117f, -0.321f, 1.000f, 0.00f, 1.00f, 0.00f,
     0.000f, 0.000f, 0.800f, 0.00f, 1.00f, 0.00f,
-    0.500f, 0.000f, 0.800f, 0.00f, 1.00f, 0.00f,
+    0.117f, -0.321f, 0.800f, 0.00f, 1.00f, 0.00f,
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
@@ -570,7 +570,7 @@ void render()
     modelMatrix = glm::rotate(modelMatrix, glm::radians(-90.0f),
             glm::vec3(1.0f, 0.0f, 0.0f));
             
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(5.0f, 3.0f, 1.5f));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(3.0f, 3.0f, 2.0f));
 
     float camX = sin(glfwGetTime()) * 10.0f;
     float camZ = cos(glfwGetTime()) * 10.0f;
