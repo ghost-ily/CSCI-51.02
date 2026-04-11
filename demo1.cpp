@@ -560,21 +560,33 @@ void render()
 
     glEnable(GL_DEPTH_TEST); // enable OpenGL's hidden surface removal
     
-    glm::mat4 matrix;
-    matrix = glm::perspective(glm::radians(60.0f),
+    glm::mat4 projectionMatrix = glm::perspective(glm::radians(60.0f),
             (float) WINDOW_WIDTH / WINDOW_HEIGHT,
             0.1f,
             100.0f);
 
-    matrix = glm::translate(matrix, glm::vec3(0.0f, 0.0f, -7.0f));
-
-    matrix = glm::rotate(matrix, glm::radians(-90.0f),
+    
+    glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(-90.0f),
             glm::vec3(1.0f, 0.0f, 0.0f));
             
-    matrix = glm::scale(matrix, glm::vec3(5.0f, 3.0f, 1.5f));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(5.0f, 3.0f, 1.5f));
+
+    float camX = sin(glfwGetTime()) * 10.0f;
+    float camZ = cos(glfwGetTime()) * 10.0f;
+
+    glm::vec3 eyePosition = glm::vec3(camX, 2.0f, camZ);
+    glm::vec3 targetPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    glm::mat4 viewMatrix = glm::lookAt(eyePosition, targetPosition, upVector);
+
+    glm::mat4 finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
 
     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
-            1, GL_FALSE, glm::value_ptr(matrix));
+            1, GL_FALSE, glm::value_ptr(finallMatrix));
+
+        
         
     
 
