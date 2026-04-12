@@ -262,8 +262,7 @@ void render()
             0.1f,
             100.0f);
 
-    glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians(-90.0f),
+    glm::mat4 modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f),
             glm::vec3(1.0f, 0.0f, 0.0f));
             
     modelMatrix = glm::scale(modelMatrix, glm::vec3(5.0f, 5.0f, 2.0f));
@@ -279,6 +278,7 @@ void render()
 
     // Draw First Nonagon
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, (float)sin(glfwGetTime()/8) * glm::vec3(1.0f, 0.0f, 0.0f));
     glm::mat4 finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
     glBindVertexArray(vao);
     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
