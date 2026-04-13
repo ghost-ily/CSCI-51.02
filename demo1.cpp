@@ -37,7 +37,7 @@ float vertices[] =
     0.087f,  0.492f, -1.000f,  0.30f, 0.30f, 0.30f,  0.58f, 0.99f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
-    0.087f,  0.492f, -1.000f,  0.30f, 0.30f, 0.30f,  0.58f, 0.99f,
+    0.087f,  0.492f, -1.000f,  0.30f, 0.30f, 0.30f,  0.58f, 0.92f,
    -0.250f,  0.433f, -1.000f,  0.30f, 0.30f, 0.30f,  0.25f, 0.93f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
@@ -49,7 +49,7 @@ float vertices[] =
    -0.470f, -0.171f, -1.000f,  0.30f, 0.30f, 0.30f,  0.03f, 0.33f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
-   -0.470f, -0.171f, -1.000f,  0.30f, 0.30f, 0.30f,  0.03f, 0.33f,
+   -0.470f, -0.171f, -1.000f,  0.30f, 0.30f, 0.30f,  0.03f, 0.67f,
    -0.250f, -0.433f, -1.000f,  0.30f, 0.30f, 0.30f,  0.25f, 0.07f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
@@ -261,12 +261,7 @@ void render()
             (float) WINDOW_WIDTH / WINDOW_HEIGHT,
             0.1f,
             100.0f);
-
-    glm::mat4 modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f),
-            glm::vec3(1.0f, 0.0f, 0.0f));
             
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(5.0f, 5.0f, 2.0f));
-
     float camX = sin(angle) * 10.0f;
     float camZ = cos(angle) * 10.0f;
 
@@ -276,19 +271,22 @@ void render()
 
     glm::mat4 viewMatrix = glm::lookAt(eyePosition, targetPosition, upVector);
 
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
     // Draw First Nonagon
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
-    modelMatrix = glm::translate(modelMatrix, (float)sin(glfwGetTime()/8) * glm::vec3(1.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 1.0f));
     glm::mat4 finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
     glBindVertexArray(vao);
+    finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
             1, GL_FALSE, glm::value_ptr(finallMatrix));
     glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (8 * sizeof(float)));
 
     // Draw Second Nonagon
     modelMatrix = glm::mat4(1.0f); // Reset identity matrix
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, 0.5f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.0f, .0f));
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 1.0f));
 
     finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
 
@@ -298,7 +296,7 @@ void render()
 
     // Draw Third Nonagon
     modelMatrix = glm::mat4(1.0f); // Reset identity matrix
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, 0.5f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.0f, 0.0f, 0.0f));
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
     finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
