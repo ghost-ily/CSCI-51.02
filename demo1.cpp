@@ -37,7 +37,7 @@ float vertices[] =
     0.087f,  0.492f, -1.000f,  0.30f, 0.30f, 0.30f,  0.58f, 0.99f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
-    0.087f,  0.492f, -1.000f,  0.30f, 0.30f, 0.30f,  0.58f, 0.92f,
+    0.087f,  0.492f, -1.000f,  0.30f, 0.30f, 0.30f,  0.58f, 0.99f,
    -0.250f,  0.433f, -1.000f,  0.30f, 0.30f, 0.30f,  0.25f, 0.93f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
@@ -49,7 +49,7 @@ float vertices[] =
    -0.470f, -0.171f, -1.000f,  0.30f, 0.30f, 0.30f,  0.03f, 0.33f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
-   -0.470f, -0.171f, -1.000f,  0.30f, 0.30f, 0.30f,  0.03f, 0.67f,
+   -0.470f, -0.171f, -1.000f,  0.30f, 0.30f, 0.30f,  0.03f, 0.33f,
    -0.250f, -0.433f, -1.000f,  0.30f, 0.30f, 0.30f,  0.25f, 0.07f,
 
     0.000f,  0.000f, -1.000f,  0.30f, 0.30f, 0.30f,  0.50f, 0.50f,
@@ -257,7 +257,7 @@ void render()
 
     glEnable(GL_DEPTH_TEST); // enable OpenGL's hidden surface removal
     
-    glm::mat4 projectionMatrix = glm::perspective(glm::radians(60.0f),
+    glm::mat4 projectionMatrix = glm::perspective(glm::radians(30.0f),
             (float) WINDOW_WIDTH / WINDOW_HEIGHT,
             0.1f,
             100.0f);
@@ -275,6 +275,7 @@ void render()
     // Draw First Nonagon
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 1.0f));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0, 2.0, 1.0));
     glm::mat4 finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
     glBindVertexArray(vao);
     finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
@@ -284,9 +285,10 @@ void render()
 
     // Draw Second Nonagon
     modelMatrix = glm::mat4(1.0f); // Reset identity matrix
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.0f, .0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.0f, 0.0f, .0f));
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 1.0f));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0, 2.0, 1.0));
 
     finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
 
@@ -296,8 +298,9 @@ void render()
 
     // Draw Third Nonagon
     modelMatrix = glm::mat4(1.0f); // Reset identity matrix
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0, 2.0, 1.0));
 
     finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
