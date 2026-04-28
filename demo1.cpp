@@ -272,46 +272,65 @@ void render()
     glm::vec3 targetPosition = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
 
-    glm::mat4 viewMatrix = glm::lookAt(eyePosition, targetPosition, upVector);
+    glUniform3fv(glGetUniformLocation(shader, "eyePosition"),
+        1, glm::value_ptr(eyePosition));
 
-    glm::mat4 modelMatrix = glm::mat4(1.0f);
+    glm::mat4 viewMatrix = glm::lookAt(eyePosition, targetPosition, upVector);
+    glm::mat4 projectionViewMatrix = projectionMatrix * viewMatrix;
+
+    glBindVertexArray(vao);
+
     // Draw First Nonagon
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 1.0f));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0, 2.0, 1.0));
-    glm::mat4 finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
-    glBindVertexArray(vao);
-    finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
-    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
-            1, GL_FALSE, glm::value_ptr(finallMatrix));
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (8 * sizeof(float)));
+
+    glm::mat4 normalMatrix = glm::transpose(glm::inverse(modelMatrix));
+
+    glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
+            1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"),
+            1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"),
+            1, GL_FALSE, glm::value_ptr(normalMatrix));
+
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
 
     // Draw Second Nonagon
-    modelMatrix = glm::mat4(1.0f); // Reset identity matrix
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.0f, 0.0f, .0f));
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.0f, 0.0f, 0.0f));
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 1.0f));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0, 2.0, 1.0));
 
-    glm::mat4 normalMatrix;
     normalMatrix = glm::transpose(glm::inverse(modelMatrix));
 
-    finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
+    glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
+            1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"),
+            1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"),
+            1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
-            1, GL_FALSE, glm::value_ptr(finallMatrix));
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (8 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
 
     // Draw Third Nonagon
-    modelMatrix = glm::mat4(1.0f); // Reset identity matrix
+    modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::translate(modelMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0, 2.0, 1.0));
 
-    finallMatrix = projectionMatrix * viewMatrix * modelMatrix;
-    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
-            1, GL_FALSE, glm::value_ptr(finallMatrix));
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (8 * sizeof(float)));
+    normalMatrix = glm::transpose(glm::inverse(modelMatrix));
+
+    glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
+            1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"),
+            1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"),
+            1, GL_FALSE, glm::value_ptr(normalMatrix));
+
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
 }
 
 /*****************************************************************************/
