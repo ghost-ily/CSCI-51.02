@@ -14,5 +14,6 @@ out vec4 fragmentColor;
 
 void main()
 {
+    vec3 lightPosition = vec3(2.0f, 2.0f, 0.0f);
     fragmentColor = vec4(shaderColor, 1.0f) * texture(shaderTexture, shaderTexCoord);
 }
