@@ -8,6 +8,14 @@
 
 using namespace std;
 
+const int MAX_FRAME_SIZE = 20000; // Maximum size of a video frame
+
+struct SharedVideoBuffer {
+    int currentFrameNum;
+    int totalFrames;
+    char frame[MAX_FRAME_SIZE]; // Buffer to hold the video frame
+};
+
 int main(int argc, char* argv[]) {
     if (argc < 2) {
         cerr << "Usage: " << argv[0] << " <ASCII video file> <Video FPS>" << endl;
