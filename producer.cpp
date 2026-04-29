@@ -109,21 +109,18 @@ int main(int argc, char* argv[]) {
                 const char* line_buffer;
                 string currentLine;
 
+
                 if (inputFile.is_open()) {
                     // Continuously read each line from
                     // input file, then ignore the first
                     // instance of the ASCII ESC character
                     while (getline(inputFile, currentLine, char(27))) {
-                        
+                         
                         // If the line is empty (and the frame started with
                         // the ESC characters), manually add it to the 
                         // frame buffer
                         if (currentLine.empty() && vidBuffer->frame[0] == '\0') {
-                            // vidBuffer->frame[0] = char(27);
-                            // vidBuffer->frame[1] = char(67);
-                            // vidBuffer->frame[2] = '\n';
                             currentLine = currentLine + char(27);
-                            cout << "Started new frame" << endl;
                             continue;
                         }
 
@@ -134,12 +131,10 @@ int main(int argc, char* argv[]) {
                         if (currentLine.empty()) {
                             // Release semaphores after this
                             strcpy(sharedMem, vidBuffer->frame);
-                            cout << "Finished frame" << endl;
                         }
                         else {
                             // else, copy current line into vidBuffer
                             strcpy(vidBuffer->frame, currentLine.c_str());
-                            cout << "Added line" << endl; 
                             continue;
                         }
 
