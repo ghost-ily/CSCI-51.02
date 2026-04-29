@@ -121,6 +121,7 @@ int main(int argc, char* argv[]) {
                         // frame buffer
                         if (currentLine.empty() && vidBuffer->frame[0] == '\0') {
                             currentLine = currentLine + char(27);
+                            cout << "Started new frame" << endl;
                             continue;
                         }
 
@@ -131,11 +132,19 @@ int main(int argc, char* argv[]) {
                         if (currentLine.empty()) {
                             // Release semaphores after this
                             strcpy(sharedMem, vidBuffer->frame);
+                            cout << "Finished frame" << endl;
                         }
                         else {
                             // else, copy current line into vidBuffer
                             strcpy(vidBuffer->frame, currentLine.c_str());
                             continue;
+                        }
+
+                        // Check if end of file is reached, then
+                        // clears the eof flag
+                        if (inputFile.eof()) {
+                            inputFile.clear();
+                            inputFile.seekg(0);
                         }
 
                         // Semaphore releasing
