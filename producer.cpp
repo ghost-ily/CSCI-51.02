@@ -1,3 +1,7 @@
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
@@ -26,18 +30,34 @@ int main(int argc, char* argv[]) {
     }
 
     // Semaphore accessing
-    struct sembuf sem[2];
+    struct sembuf sem[4];
 
-    // Semaphore 0: Signifies when producer can write
+    // Semaphore 0: Check if producer can write to shared memory
     sem[0].sem_num = 0;
-    sem[0].sem_op = -1;
+    sem[0].sem_op = 0;
     sem[0].sem_flg = SEM_UNDO;
 
-    // Semaphore 1: Mutex semaphore
+    // Semaphore 1: Check if producer can run exclusively
     sem[1].sem_num = 1;
-    sem[1].sem_op = -1;
+    sem[1].sem_op = 0;
     sem[1].sem_flg = SEM_UNDO;
 
+    // Semaphore 0: Producer signals that shared memory will be full 
+    sem[2].sem_num = 0;
+    sem[2].sem_op = 1;
+    sem[2].sem_flg = SEM_UNDO;
+
+    // Semaphore 1: Producer will run exclusively
+    sem[3].sem_num = 1;
+    sem[3].sem_op = 1;
+    sem[3].sem_flg = SEM_UNDO;
+
+    int opResult = semop(semID, sem, 4);
+
+    if (opResult != 1) {
+        // Read ASCII video file and write
+        // frame to shared memory
+    }
 
     return 0;
 }
