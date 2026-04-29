@@ -59,5 +59,33 @@ int main(int argc, char* argv[]) {
         // frame to shared memory
     }
 
+    // Shared memory initialization
+    int shmID;
+    key_t shmKey = 2222;
+    int shmSize = sizeof(SharedVideoBuffer); // Size of shared memory segment
+    int shmFlag = IPC_CREAT | 0666;
+    int shmID = shmget(shmKey, shmSize, shmFlag);
+    sharedMem = (char*)shmat( shmId, NULL, 0 );
+
+    if( ((int*)sharedMem) == (int*)-1 )
+    {
+        perror( "shmop: shmat failed" );
+    }
+    else
+    {
+        const char* buffer = "Hello!";
+        
+        strcpy( sharedMem, buffer );
+        char buffer2[50];
+        
+        strcpy( buffer2, sharedMem );
+        printf( "%s\n", buffer2 );
+        char buffer3[50];
+        
+        memcpy( buffer3, sharedMem, 3 );
+        buffer3[3] = '\0';
+        printf( "%s\n", buffer3 );
+    }
+
     return 0;
 }
