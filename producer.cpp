@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <thread>
+#include <unistd.h>
+#include <string.h>
 
 using namespace std;
 
@@ -45,12 +47,13 @@ int main(int argc, char* argv[]) {
 
     // Struct initialization
     SharedVideoBuffer* vidBuffer = new SharedVideoBuffer;
+    vidBuffer->frame[0] = '\0';
 
     // Semaphore initialization
     int semID;
     key_t semKey = 1111;
     int semFlag = IPC_CREAT | 0666;
-    int nSems = 3;
+    int nSems = 2;
 
     semID = semget(semKey, nSems, semFlag);
     if (semID == -1) {
@@ -58,14 +61,18 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
+    // Set semaphore operations to 4
+    int semOps = 4;
+
     // Semaphore accessing
-    struct sembuf sem[4];
+    struct sembuf sem[semOps];
 
     // Shared memory initialization
     key_t shmKey = 2222;
     int shmSize = sizeof(SharedVideoBuffer); // Size of shared memory segment
     int shmFlag = IPC_CREAT | 0666;
     int shmID = shmget(shmKey, shmSize, shmFlag);
+    int opResult;
 
     while(keep_running) {
         // Semaphore 0: Check if producer can write to shared memory
@@ -83,12 +90,12 @@ int main(int argc, char* argv[]) {
         sem[2].sem_op = 1;
         sem[2].sem_flg = SEM_UNDO;
 
-        // Semaphore 1: Producer will run exclusively
+        // Semaphore 1: Producer will run exclusively (Lock mutex)
         sem[3].sem_num = 1;
         sem[3].sem_op = 1;
         sem[3].sem_flg = SEM_UNDO;
 
-        int opResult = semop(semID, sem, 4);
+        opResult = semop(semID, sem, 4);
         char* sharedMem = (char*)shmat( shmID, NULL, 0 );
 
         if (opResult != 1) {
@@ -96,7 +103,7 @@ int main(int argc, char* argv[]) {
             // frame to shared memory
             if(((int*)sharedMem) == (int*)-1) {
                 perror( "shmop: shmat failed" );
-                exit(1)
+                exit(1);
             }
             else {
                 const char* line_buffer;
@@ -107,20 +114,53 @@ int main(int argc, char* argv[]) {
                     // input file, then ignore the first
                     // instance of the ASCII ESC character
                     while (getline(inputFile, currentLine, char(27))) {
+                        
+                        // If the line is empty (and the frame started with
+                        // the ESC characters), manually add it to the 
+                        // frame buffer
+                        if (currentLine.empty() && vidBuffer->frame[0] == '\0') {
+                            // vidBuffer->frame[0] = char(27);
+                            // vidBuffer->frame[1] = char(67);
+                            // vidBuffer->frame[2] = '\n';
+                            currentLine = currentLine + char(27);
+                            cout << "Started new frame" << endl;
+                            continue;
+                        }
 
+                        // If the line reaches the start of the
+                        // other frame (the starting ESC character),
+                        // place frame into shared memory and
+                        // signal out that current frame is full
+                        if (currentLine.empty()) {
+                            // Release semaphores after this
+                            strcpy(sharedMem, vidBuffer->frame);
+                            cout << "Finished frame" << endl;
+                        }
+                        else {
+                            // else, copy current line into vidBuffer
+                            strcpy(vidBuffer->frame, currentLine.c_str());
+                            cout << "Added line" << endl; 
+                            continue;
+                        }
+
+                        // Semaphore releasing
+
+                        // Set number of operations to 2
+                        semOps = 1;
+
+                        // Semaphore 1: Producer releases semaphore (Unlock mutex)
+                        sem[0].sem_num = 1;
+                        sem[0].sem_op = -1;
+                        sem[0].sem_flg = SEM_UNDO;
+
+                        opResult = semop(semID, sem, semOps);
+                        if( opResult == -1 ){
+                            perror( "semop (decrement)" );
+                        }
+
+                        usleep(sleepTime);
                     }
                 }
-                
-                strcpy( sharedMem, line_buffer );
-                char buffer2[50];
-                
-                strcpy( buffer2, sharedMem );
-                printf( "%s\n", buffer2 );
-                char buffer3[50];
-                
-                memcpy( buffer3, sharedMem, 3 );
-                buffer3[3] = '\0';
-                printf( "%s\n", buffer3 );
             }
         }
     }
