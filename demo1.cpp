@@ -244,6 +244,7 @@ bool setup()
 
 
 float angle = 0;
+float specularity = 2.0;
 
 // called by the main function to do rendering per frame
 void render()
@@ -277,6 +278,24 @@ void render()
 
     glm::mat4 viewMatrix = glm::lookAt(eyePosition, targetPosition, upVector);
     glm::mat4 projectionViewMatrix = projectionMatrix * viewMatrix;
+
+    // Animate light position
+    glm::vec3 lightPosition = glm::vec3(fabs(sin((float)glfwGetTime())), 
+        fabs(sin((float)glfwGetTime())), 
+        2.0f);
+
+    glUniform3fv(glGetUniformLocation(shader, "lightPosition"),
+        1, glm::value_ptr(lightPosition));
+
+    // Animate light color
+    glm::vec3 lightColor = glm::vec3(fabs(sin((float)glfwGetTime())), 
+        sin((float)glfwGetTime()) * 2.0f, 
+        sin((float)glfwGetTime()) * 4.0f);
+
+    glUniform3fv(glGetUniformLocation(shader, "lightColor"),
+        1, glm::value_ptr(lightColor));
+
+    glUniform1f(glGetUniformLocation(shader, "specularity"), specularity);
 
     glBindVertexArray(vao);
 
@@ -345,6 +364,10 @@ void handleKeys(GLFWwindow* pWindow, int key, int scancode, int action, int mode
         angle += 0.5;
     if (key == GLFW_KEY_D && action == GLFW_PRESS)
         angle -= 0.5;
+    if (key == GLFW_KEY_E && action == GLFW_PRESS)
+        fabs(specularity *= 2.0);
+    if (key == GLFW_KEY_Q && action == GLFW_PRESS)
+        fabs(specularity /= 2.0);
 }
 
 // handler called by GLFW when the window is resized

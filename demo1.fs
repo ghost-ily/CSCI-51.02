@@ -16,12 +16,18 @@ uniform sampler2D shaderTexture;
 
 uniform vec3 eyePosition;
 
+uniform vec3 lightPosition;
+
+uniform vec3 lightColor;
+
+uniform float specularity;
+
 out vec4 fragmentColor;
 
 void main()
 {
-    vec3 lightPosition = vec3(0.0f, 2.0f, 0.0f);
-    vec3 lightColor = vec3(1.0f, 1.0f, 1.0f);
+    vec3 lightPosition = lightPosition;
+    vec3 lightColor = lightColor;
 
     vec3 l = normalize(lightPosition - worldSpacePosition);
     vec3 n = normalize(worldSpaceNormal);
@@ -34,7 +40,7 @@ void main()
     vec3 e = normalize(eyePosition - worldSpacePosition);
     vec3 r = reflect(-l, n);
 
-    float shininess = 32.0f;
+    float shininess = specularity;
     float Cs = pow(max(dot(e, r), 0.0f), shininess);
 
     vec4 textureColor = texture(shaderTexture, shaderTexCoord);
