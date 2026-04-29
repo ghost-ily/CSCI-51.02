@@ -20,7 +20,7 @@ out vec4 fragmentColor;
 
 void main()
 {
-    vec3 lightPosition = vec3(2.0f, 2.0f, 0.0f);
+    vec3 lightPosition = vec3(0.0f, 2.0f, 0.0f);
     vec3 lightColor = vec3(1.0f, 1.0f, 1.0f);
 
     vec3 l = normalize(lightPosition - worldSpacePosition);
