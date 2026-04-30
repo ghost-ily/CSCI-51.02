@@ -39,4 +39,52 @@ int main(int argc, char* argv[]) {
     if (semID == -1) {
         perror("semget error");
     }
+
+    int lastFrameSeen = 0;
+    int totalSkipped = 0;
+
+    while (keep_running) {
+        // Check if producer can write to shared memory
+        struct sembuf sem[2];
+        sem[0].sem_num = 0;
+        sem[0].sem_op = 0;
+        sem[0].sem_flg = SEM_UNDO;
+
+        // Check if producer can run exclusively
+        sem[1].sem_num = 1;
+        sem[1].sem_op = 0;
+        sem[1].sem_flg = SEM_UNDO;
+
+        int opResult = semop(semID, sem, 2);
+        if (opResult == -1) {
+            perror("semop error");
+            exit(1);
+        }
+
+        // Access shared memory and read the current frame number
+        key_t shmKey = 2222;
+        int shmSize = sizeof(SharedVideoBuffer);
+        int shmFlag = IPC_CREAT | 0666;
+        int shmID = shmget(shmKey, shmSize, shmFlag);
+        char* sharedMem = (char*)shmat(shmID, NULL, 0);
+
+        if (sharedMem == (char*)-1) {
+            perror("shmat failed");
+            exit(1);
+        }
+
+        SharedVideoBuffer* vidBuffer = (SharedVideoBuffer*)sharedMem;
+        
+        // Check if the current frame number is greater than the last seen frame number
+        if (vidBuffer->currentFrameNum > lastFrameSeen) {
+            cout << "Producer: Current Frame Number: " << vidBuffer->currentFrameNum << endl;
+            lastFrameSeen = vidBuffer->currentFrameNum;
+            totalSkipped += (vidBuffer->currentFrameNum - lastFrameSeen - 1);
+            cout << "Producer: Total Skipped Frames: " << totalSkipped << endl;
+        }
+
+        shmdt(sharedMem); // Detach from shared memory
+
+        usleep(sleepTime); // Sleep for the calculated time based on FPS
+    }
 }

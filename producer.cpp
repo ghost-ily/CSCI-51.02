@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
     
     string file = argv[1];
     int fps = stoi(argv[2]);
-    float sleepTime = 1000 / fps;
+    float sleepTime = (1000 / fps) * 1000; // Convert FPS to microseconds for usleep
     ifstream inputFile(file);
 
     // Create thread to take "ENTER" input
