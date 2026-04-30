@@ -17,7 +17,6 @@ struct SharedVideoBuffer {
     char frame[MAX_FRAME_SIZE];
 };
 
-// Re-use your listener thread logic for the Enter key
 void *listener(void *ptr) {
     cin.get();
     keep_running = false;
@@ -25,66 +24,85 @@ void *listener(void *ptr) {
 }
 
 int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        cerr << "Usage: " << argv[0] << " <FPS>" << endl;
+        return 1;
+    }
+
+    int fps = stoi(argv[1]);
+    float sleepTime = (1000.0f / fps) * 1000; // microseconds
+
     // Create thread to listen for Enter key
     pthread_t thread;
     pthread_create(&thread, NULL, listener, NULL);
 
-    // Semaphore initialization
-    int semID;
+    // --- Semaphore setup ---
     key_t semKey = 1111;
-    int semFlag = IPC_CREAT | 0666;
-    int nSems = 2;
-
-    semID = semget(semKey, nSems, semFlag);
+    int semID = semget(semKey, 2, 0666);
     if (semID == -1) {
         perror("semget error");
+        return 1;
+    }
+
+    // --- Shared memory setup ---
+    key_t shmKey = 2222;
+    int shmSize = sizeof(SharedVideoBuffer);
+    int shmID = shmget(shmKey, shmSize, 0666);
+    if (shmID == -1) {
+        perror("shmget error");
+        return 1;
+    }
+
+    SharedVideoBuffer* vidBuffer = (SharedVideoBuffer*)shmat(shmID, NULL, 0);
+    if (vidBuffer == (SharedVideoBuffer*)-1) {
+        perror("shmat failed");
+        return 1;
     }
 
     int lastFrameSeen = 0;
-    int totalSkipped = 0;
+    int totalSkipped  = 0;
 
     while (keep_running) {
-        // Check if producer can write to shared memory
-        struct sembuf sem[2];
-        sem[0].sem_num = 0;
-        sem[0].sem_op = 0;
-        sem[0].sem_flg = SEM_UNDO;
 
-        // Check if producer can run exclusively
-        sem[1].sem_num = 1;
-        sem[1].sem_op = 0;
-        sem[1].sem_flg = SEM_UNDO;
+        // Wait for a full slot to be available
+        struct sembuf wait_full;
+        wait_full.sem_num = 1;
+        wait_full.sem_op  = -1;  // decrement: claim the full slot
+        wait_full.sem_flg = SEM_UNDO;
 
-        int opResult = semop(semID, sem, 2);
-        if (opResult == -1) {
-            perror("semop error");
-            exit(1);
+        if (semop(semID, &wait_full, 1) == -1) {
+            perror("semop wait_full error");
+            break;
         }
 
-        // Access shared memory and read the current frame number
-        key_t shmKey = 2222;
-        int shmSize = sizeof(SharedVideoBuffer);
-        int shmFlag = IPC_CREAT | 0666;
-        int shmID = shmget(shmKey, shmSize, shmFlag);
-        char* sharedMem = (char*)shmat(shmID, NULL, 0);
-
-        if (sharedMem == (char*)-1) {
-            perror("shmat failed");
-            exit(1);
-        }
-
-        SharedVideoBuffer* vidBuffer = (SharedVideoBuffer*)sharedMem;
-        
-        // Check if the current frame number is greater than the last seen frame number
+        // --- Read the frame ---
         if (vidBuffer->currentFrameNum > lastFrameSeen) {
-            cout << "Producer: Current Frame Number: " << vidBuffer->currentFrameNum << endl;
+            int skipped   = vidBuffer->currentFrameNum - lastFrameSeen - 1;
+            totalSkipped += skipped;
             lastFrameSeen = vidBuffer->currentFrameNum;
-            totalSkipped += (vidBuffer->currentFrameNum - lastFrameSeen - 1);
-            cout << "Producer: Total Skipped Frames: " << totalSkipped << endl;
+
+            cout << "Consumer: Current Frame Number: " << lastFrameSeen << endl;
+            cout << "Consumer: Total Skipped Frames: " << totalSkipped  << endl;
+            cout << vidBuffer->frame;
+            cout.flush();
         }
 
-        shmdt(sharedMem); // Detach from shared memory
+        // Signal that the slot is now empty again
+        struct sembuf signal_empty;
+        signal_empty.sem_num = 0;
+        signal_empty.sem_op  = 1;  // increment: mark slot as empty
+        signal_empty.sem_flg = SEM_UNDO;
 
-        usleep(sleepTime); // Sleep for the calculated time based on FPS
+        if (semop(semID, &signal_empty, 1) == -1) {
+            perror("semop signal_empty error");
+            break;
+        }
+
+        usleep(sleepTime);
     }
+
+    // Cleanup
+    shmdt(vidBuffer);
+
+    return 0;
 }
