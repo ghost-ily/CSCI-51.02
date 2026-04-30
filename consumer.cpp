@@ -25,9 +25,13 @@ void *listener(void *ptr) {
 }
 
 int main(int argc, char* argv[]) {
+    int fps = stoi(argv[1]);
+    float sleepTime = (1000 / fps) * 1000; // Convert FPS to microseconds for usleep
+
     // Create thread to listen for Enter key
     pthread_t thread;
     pthread_create(&thread, NULL, listener, NULL);
+    
 
     // Semaphore initialization
     int semID;
