@@ -519,6 +519,7 @@ void render()
 
     glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
 
+    // Bind and Draw vending machine VAO
     glBindVertexArray(vao2);
 
     modelMatrix = glm::mat4(1.0f);
