@@ -187,6 +187,146 @@ float vertices[] =
 
 };
 
+float vertices2[] =
+{
+    // position (x, y, z)
+
+    //bottom
+    //front part
+    1.0f, -1.5f, -1.3f,
+    0.6f, -1.5f, -1.3f,
+    0.6f, -1.5f, -1.0f,
+
+    0.6f, -1.5f, -1.0f,
+    -1.0f, -1.5f, -1.3f,
+    0.6f, -1.5f, -1.3f,
+
+    -1.3f, -1.5f, -1.3f,
+    -1.0f, -1.5f, -1.0f,
+    -1.0f, -1.5f, -1.3f,
+
+    -1.0f, -1.5f, -1.0f,
+    -1.0f, -1.5f, -1.3f,
+    0.6f, -1.5f, -1.0f,
+
+    //main part
+    -1.3f, -1.5f, -1.3f,
+    -1.3f, -1.5f, -3.2f,
+    1.0f, -1.5f, -3.2f,
+
+    -1.3f, -1.5f, -1.3f,
+    1.0f, -1.5f, -3.2f,
+    1.0f, -1.5f, -1.3f,
+
+    //top
+    //front part
+    1.0f, 1.5f, -1.3f,
+    0.6f, 1.5f, -1.3f,
+    0.6f, 1.5f, -1.0f,
+
+    0.6f, 1.5f, -1.0f,
+    -1.0f, 1.5f, -1.3f,
+    0.6f, 1.5f, -1.3f,
+
+    -1.3f, 1.5f, -1.3f,
+    -1.0f, 1.5f, -1.0f,
+    -1.0f, 1.5f, -1.3f,
+
+    -1.0f, 1.5f, -1.0f,
+    -1.0f, 1.5f, -1.3f,
+    0.6f, 1.5f, -1.0f,
+
+    //main part
+    -1.3f, 1.5f, -1.3f,
+    -1.3f, 1.5f, -3.2f,
+    1.0f, 1.5f, -3.2f,
+
+    -1.3f, 1.5f, -1.3f,
+    1.0f, 1.5f, -3.2f,
+    1.0f, 1.5f, -1.3f,
+
+    //front
+    0.6f, 1.5f, -1.0f,
+    -1.0f, 1.5f, -1.0f,
+    0.6f, -1.5f, -1.0f,
+
+    -1.0f, 1.5f, -1.0f,
+    -1.0f, -1.5f, -1.0f,
+    0.6f, -1.5f, -1.0f,
+
+    //front right
+    0.6f, 1.5f, -1.0f,
+    0.6f, -1.5f, -1.0f,
+    1.0f, -1.5f, -1.3f,
+
+    1.0f, -1.5f, -1.3f,
+    0.6f, 1.5f, -1.0f,
+    1.0f, 1.5f, -1.3f,
+
+    //front left
+    -1.0f, 1.5f, -1.0f,
+    -1.3f, -1.5f, -1.3f,
+    -1.0f, -1.5f, -1.0f,
+
+    -1.3f, -1.5f, -1.3f,
+    -1.3f, 1.5f, -1.3f,
+    -1.0f, 1.5f, -1.0f,
+
+    //left side
+    -1.3f, -1.5f, -1.3f,
+    -1.3f, -1.5f, -3.2f,
+    -1.3f, 1.5f, -3.2f,
+
+    -1.3f, -1.5f, -1.3f,
+    -1.3f, 1.5f, -3.2f,
+    -1.3f, 1.5f, -1.3f,
+
+    //right side
+    1.0f, -1.5f, -1.3f,
+    1.0f, -1.5f, -3.2f,
+    1.0f, 1.5f, -3.2f,
+
+    1.0f, -1.5f, -1.3f,
+    1.0f, 1.5f, -3.2f,
+    1.0f, 1.5f, -1.3f,
+
+    //back side
+    -1.3f, -1.5f, -3.2f,
+    -1.3f, 1.5f, -3.2f,
+    1.0f, 1.5f, -3.2f,
+
+    -1.3f, -1.5f, -3.2f,
+    1.0f, 1.5f, -3.2f,
+    1.0f, -1.5f, -3.2f,
+    
+    //tray top
+    -0.6f, -0.5f, -1.0f,
+    -0.6f, -0.5f, -0.7f,
+    0.3f, -0.5f, -1.0f,
+
+    0.3f, -0.5f, -1.0f,
+    -0.6f, -0.5f, -0.7f,
+    0.3f, -0.5f, -0.7f,
+    
+    //tray sides
+    -0.6f, -0.5f, -1.0f,
+    -0.6f, -0.8f, -1.0f,
+    -0.6f, -0.5f, -0.7f,
+
+    0.3f, -0.5f, -1.0f,
+    0.3f, -0.8f, -1.0f,
+    0.3f, -0.5f, -0.7f,
+
+    //tray
+    -0.6f, -0.9f, -1.0f,
+    -0.6f, -0.8f, -0.7f,
+    0.3f, -0.9f, -1.0f,
+
+    0.3f, -0.9f, -1.0f,
+    -0.6f, -0.8f, -0.7f,
+    0.3f, -0.8f, -0.7f,
+};
+
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
 // object IDs for coin
 GLuint vao;         // vertex array object (stores the render state for our vertex array)
@@ -195,6 +335,10 @@ GLuint shader;      // combined vertex and fragment shader
 GLuint texture;
 GLuint normalTexture;
 
+// object IDs for vending machine
+GLuint vao2;
+GLuint vbo2;
+
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
 bool setup()
@@ -202,6 +346,10 @@ bool setup()
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
+
+    // VAO and VBO objects for vending machine
+    glGenVertexArrays(1, &vao2);
+    glGenBuffers(1, &vbo2);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao);
@@ -228,6 +376,15 @@ bool setup()
     glEnableVertexAttribArray(1);
     glEnableVertexAttribArray(2);
     glEnableVertexAttribArray(3);
+
+    // vertex array data for vending machine
+    glBindVertexArray(vao2);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo2);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
+    glEnableVertexAttribArray(0);
 
     // important: if you have more vertex arrays to draw, make sure you separately define them
     // with unique VAO and VBO IDs, and follow the same process above to upload them to the GPU
@@ -361,6 +518,20 @@ void render()
             1, GL_FALSE, glm::value_ptr(normalMatrix));
 
     glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
+
+    glBindVertexArray(vao2);
+
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0, 1.0, 1.0));
+
+    glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
+            1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"),
+            1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"),
+            1, GL_FALSE, glm::value_ptr(normalMatrix));
+
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices2) / (3 * sizeof(float)));
 }
 
 /*****************************************************************************/
