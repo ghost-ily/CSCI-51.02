@@ -189,11 +189,11 @@ float vertices[] =
 
 float vertices2[] =
 {
-    // position (x, y, z)
+    // position (x, y, z)   normal (nx, ny, nz)
 
     //bottom
     //front part
-    1.0f, -1.5f, -1.3f,
+    1.0f, -1.5f, -1.3f, 
     0.6f, -1.5f, -1.3f,
     0.6f, -1.5f, -1.0f,
 
@@ -327,6 +327,133 @@ float vertices2[] =
     0.3f, -0.8f, -0.7f,
 };
 
+float vertices3[] = {
+    // position (x, y, z)
+
+    // top circle
+    0.00,  1.00,  0.00,
+    0.55,  1.00,  0.00,
+    0.39,  1.00,  0.39,
+
+    0.00,  1.00,  0.00,
+    0.39,  1.00,  0.39,
+    0.00,  1.00,  0.55,
+
+    0.00,  1.00,  0.00,
+    0.00,  1.00,  0.55,
+    -0.39,  1.00,  0.39,
+
+    0.00,  1.00,  0.00,
+    -0.39,  1.00,  0.39,
+    -0.55,  1.00,  0.00,
+
+    0.00,  1.00,  0.00,
+    -0.55,  1.00,  0.00,
+    -0.39,  1.00, -0.39,
+
+    0.00,  1.00,  0.00,
+    -0.39,  1.00, -0.39,
+    0.00,  1.00, -0.55,
+
+    0.00,  1.00,  0.00,
+    0.00,  1.00, -0.55,
+    0.39,  1.00, -0.39,
+
+    0.00,  1.00,  0.00,
+    0.39,  1.00, -0.39,
+    0.55,  1.00,  0.00,
+
+    // bottom circle
+    0.00, -1.00,  0.00,
+    0.39, -1.00,  0.39,
+    0.55, -1.00,  0.00,
+
+    0.00, -1.00,  0.00,
+    0.00, -1.00,  0.55,
+    0.39, -1.00,  0.39,
+
+    0.00, -1.00,  0.00,
+    -0.39, -1.00,  0.39,
+    0.00, -1.00,  0.55,
+
+    0.00, -1.00,  0.00,
+    -0.55, -1.00,  0.00,
+    -0.39, -1.00,  0.39,
+
+    0.00, -1.00,  0.00,
+    -0.39, -1.00, -0.39,
+    -0.55, -1.00,  0.00,
+
+    0.00, -1.00,  0.00,
+    0.00, -1.00, -0.55,
+    -0.39, -1.00, -0.39,
+
+    0.00, -1.00,  0.00,
+    0.39, -1.00, -0.39,
+    0.00, -1.00, -0.55,
+
+    0.00, -1.00,  0.00,
+    0.55, -1.00,  0.00,
+    0.39, -1.00, -0.39,
+
+    //Walls
+    0.55,  1.00,  0.00,
+    0.55, -1.00,  0.00,
+    0.39,  1.00,  0.39,
+    0.39,  1.00,  0.39,
+    0.55, -1.00,  0.00,
+    0.39, -1.00,  0.39,
+
+    0.39,  1.00,  0.39,
+    0.39, -1.00,  0.39,
+    0.00,  1.00,  0.55,
+    0.00,  1.00,  0.55,
+    0.39, -1.00,  0.39,
+    0.00, -1.00,  0.55,
+
+    0.00,  1.00,  0.55,
+    0.00, -1.00,  0.55,
+    -0.39,  1.00,  0.39,
+    -0.39,  1.00,  0.39,
+    0.00, -1.00,  0.55,
+    -0.39, -1.00,  0.39,
+
+    -0.39,  1.00,  0.39,
+    -0.39, -1.00,  0.39,
+    -0.55,  1.00,  0.00,
+    -0.55,  1.00,  0.00,
+    -0.39, -1.00,  0.39,
+    -0.55, -1.00,  0.00,
+
+    -0.55,  1.00,  0.00,
+    -0.55, -1.00,  0.00,
+    -0.39,  1.00, -0.39,
+    -0.39,  1.00, -0.39,
+    -0.55, -1.00,  0.00,
+    -0.39, -1.00, -0.39,
+
+    -0.39,  1.00, -0.39,
+    -0.39, -1.00, -0.39,
+    0.00,  1.00, -0.55,
+    0.00,  1.00, -0.55,
+    -0.39, -1.00, -0.39,
+    0.00, -1.00, -0.55,
+
+    0.00,  1.00, -0.55,
+    0.00, -1.00, -0.55,
+    0.39,  1.00, -0.39,
+    0.39,  1.00, -0.39,
+    0.00, -1.00, -0.55,
+    0.39, -1.00, -0.39,
+
+    0.39,  1.00, -0.39,
+    0.39, -1.00, -0.39,
+    0.55,  1.00,  0.00,
+    0.55,  1.00,  0.00,
+    0.39, -1.00, -0.39,
+    0.55, -1.00,  0.00,
+};
+
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
 // object IDs for coin
 GLuint vao;         // vertex array object (stores the render state for our vertex array)
@@ -339,6 +466,9 @@ GLuint normalTexture;
 GLuint vao2;
 GLuint vbo2;
 
+GLuint vao3;
+GLuint vbo3;
+
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
 bool setup()
@@ -350,6 +480,10 @@ bool setup()
     // VAO and VBO objects for vending machine
     glGenVertexArrays(1, &vao2);
     glGenBuffers(1, &vbo2);
+
+    // VAO and VBO objects for can
+    glGenVertexArrays(1, &vao3);
+    glGenBuffers(1, &vbo3);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao);
@@ -388,6 +522,15 @@ bool setup()
 
     // important: if you have more vertex arrays to draw, make sure you separately define them
     // with unique VAO and VBO IDs, and follow the same process above to upload them to the GPU
+    
+    // vertex array data for can
+    glBindVertexArray(vao3);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo3);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices3), vertices3, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
+    glEnableVertexAttribArray(0);
 
     // load our shader program
     shader = gdevLoadShader("demo1.vs", "demo1.fs");
@@ -523,6 +666,22 @@ void render()
     glBindVertexArray(vao2);
 
     modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0, 1.0, 1.0));
+
+    glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
+            1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"),
+            1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"),
+            1, GL_FALSE, glm::value_ptr(normalMatrix));
+
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices2) / (3 * sizeof(float)));
+
+    // Bind and Draw Can VAO
+    glBindVertexArray(vao3);
+
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(2.0f, 0.5f, -2.0f));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0, 1.0, 1.0));
 
     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
