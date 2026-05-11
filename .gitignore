@@ -1,0 +1,6 @@
+include/
+lib-mingw-w64/
+lib-universal/
+src/
+demo1.out
+test
