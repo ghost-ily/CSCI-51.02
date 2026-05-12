@@ -189,269 +189,271 @@ float vertices[] =
 
 float vertices2[] =
 {
-    // position (x, y, z)   normal (nx, ny, nz)
+    // position (x, y, z)   color(r, g, b)
 
     //bottom
     //front part
-    1.0f, -1.5f, -1.3f, 
-    0.6f, -1.5f, -1.3f,
-    0.6f, -1.5f, -1.0f,
+    1.0f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    0.6f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    0.6f, -1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
 
-    0.6f, -1.5f, -1.0f,
-    -1.0f, -1.5f, -1.3f,
-    0.6f, -1.5f, -1.3f,
+    0.6f, -1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
+    -1.0f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    0.6f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
 
-    -1.3f, -1.5f, -1.3f,
-    -1.0f, -1.5f, -1.0f,
-    -1.0f, -1.5f, -1.3f,
+    -1.3f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    -1.0f, -1.5f, -1.0f,    1.0f, 0.0f, 0.0f,
+    -1.0f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
 
-    -1.0f, -1.5f, -1.0f,
-    -1.0f, -1.5f, -1.3f,
-    0.6f, -1.5f, -1.0f,
+    -1.0f, -1.5f, -1.0f,    1.0f, 0.0f, 0.0f,
+    -1.0f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    0.6f, -1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
 
     //main part
-    -1.3f, -1.5f, -1.3f,
-    -1.3f, -1.5f, -3.2f,
-    1.0f, -1.5f, -3.2f,
+    -1.3f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    -1.3f, -1.5f, -3.2f,    1.0f, 0.0f, 0.0f,
+    1.0f, -1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
 
-    -1.3f, -1.5f, -1.3f,
-    1.0f, -1.5f, -3.2f,
-    1.0f, -1.5f, -1.3f,
+    -1.3f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    1.0f, -1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
+    1.0f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
 
     //top
     //front part
-    1.0f, 1.5f, -1.3f,
-    0.6f, 1.5f, -1.3f,
-    0.6f, 1.5f, -1.0f,
+    1.0f, 1.5f, -1.3f,      1.0f, 0.0f, 0.0f,
+    0.6f, 1.5f, -1.3f,      1.0f, 0.0f, 0.0f,
+    0.6f, 1.5f, -1.0f,      1.0f, 0.0f, 0.0f,
 
-    0.6f, 1.5f, -1.0f,
-    -1.0f, 1.5f, -1.3f,
-    0.6f, 1.5f, -1.3f,
+    0.6f, 1.5f, -1.0f,      1.0f, 0.0f, 0.0f,
+    -1.0f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    0.6f, 1.5f, -1.3f,      1.0f, 0.0f, 0.0f,
 
-    -1.3f, 1.5f, -1.3f,
-    -1.0f, 1.5f, -1.0f,
-    -1.0f, 1.5f, -1.3f,
+    -1.3f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    -1.0f, 1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
+    -1.0f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
 
-    -1.0f, 1.5f, -1.0f,
-    -1.0f, 1.5f, -1.3f,
-    0.6f, 1.5f, -1.0f,
+    -1.0f, 1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
+    -1.0f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    0.6f, 1.5f, -1.0f,      1.0f, 0.0f, 0.0f,
 
     //main part
-    -1.3f, 1.5f, -1.3f,
-    -1.3f, 1.5f, -3.2f,
-    1.0f, 1.5f, -3.2f,
+    -1.3f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    -1.3f, 1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -3.2f,      1.0f, 0.0f, 0.0f,
 
-    -1.3f, 1.5f, -1.3f,
-    1.0f, 1.5f, -3.2f,
-    1.0f, 1.5f, -1.3f,
+    -1.3f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -3.2f,      1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -1.3f,      1.0f, 0.0f, 0.0f,
 
     //front
-    0.6f, 1.5f, -1.0f,
-    -1.0f, 1.5f, -1.0f,
-    0.6f, -1.5f, -1.0f,
+    0.6f, 1.5f, -1.0f,      1.0f, 0.0f, 0.0f,
+    -1.0f, 1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
+    0.6f, -1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
 
-    -1.0f, 1.5f, -1.0f,
-    -1.0f, -1.5f, -1.0f,
-    0.6f, -1.5f, -1.0f,
+    -1.0f, 1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
+    -1.0f, -1.5f, -1.0f,    1.0f, 0.0f, 0.0f,
+    0.6f, -1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
 
     //front right
-    0.6f, 1.5f, -1.0f,
-    0.6f, -1.5f, -1.0f,
-    1.0f, -1.5f, -1.3f,
+    0.6f, 1.5f, -1.0f,      1.0f, 0.0f, 0.0f,
+    0.6f, -1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
+    1.0f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
 
-    1.0f, -1.5f, -1.3f,
-    0.6f, 1.5f, -1.0f,
-    1.0f, 1.5f, -1.3f,
+    1.0f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    0.6f, 1.5f, -1.0f,      1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -1.3f,      1.0f, 0.0f, 0.0f,
 
     //front left
-    -1.0f, 1.5f, -1.0f,
-    -1.3f, -1.5f, -1.3f,
-    -1.0f, -1.5f, -1.0f,
+    -1.0f, 1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
+    -1.3f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    -1.0f, -1.5f, -1.0f,    1.0f, 0.0f, 0.0f,
 
-    -1.3f, -1.5f, -1.3f,
-    -1.3f, 1.5f, -1.3f,
-    -1.0f, 1.5f, -1.0f,
+    -1.3f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    -1.3f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    -1.0f, 1.5f, -1.0f,     1.0f, 0.0f, 0.0f,
 
     //left side
-    -1.3f, -1.5f, -1.3f,
-    -1.3f, -1.5f, -3.2f,
-    -1.3f, 1.5f, -3.2f,
+    -1.3f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    -1.3f, -1.5f, -3.2f,    1.0f, 0.0f, 0.0f,
+    -1.3f, 1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
 
-    -1.3f, -1.5f, -1.3f,
-    -1.3f, 1.5f, -3.2f,
-    -1.3f, 1.5f, -1.3f,
+    -1.3f, -1.5f, -1.3f,    1.0f, 0.0f, 0.0f,
+    -1.3f, 1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
+    -1.3f, 1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
 
     //right side
-    1.0f, -1.5f, -1.3f,
-    1.0f, -1.5f, -3.2f,
-    1.0f, 1.5f, -3.2f,
+    1.0f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    1.0f, -1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -3.2f,      1.0f, 0.0f, 0.0f,
 
-    1.0f, -1.5f, -1.3f,
-    1.0f, 1.5f, -3.2f,
-    1.0f, 1.5f, -1.3f,
+    1.0f, -1.5f, -1.3f,     1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -3.2f,      1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -1.3f,      1.0f, 0.0f, 0.0f,
 
     //back side
-    -1.3f, -1.5f, -3.2f,
-    -1.3f, 1.5f, -3.2f,
-    1.0f, 1.5f, -3.2f,
+    -1.3f, -1.5f, -3.2f,    1.0f, 0.0f, 0.0f,
+    -1.3f, 1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -3.2f,      1.0f, 0.0f, 0.0f,
 
-    -1.3f, -1.5f, -3.2f,
-    1.0f, 1.5f, -3.2f,
-    1.0f, -1.5f, -3.2f,
+    -1.3f, -1.5f, -3.2f,    1.0f, 0.0f, 0.0f,
+    1.0f, 1.5f, -3.2f,      1.0f, 0.0f, 0.0f,
+    1.0f, -1.5f, -3.2f,     1.0f, 0.0f, 0.0f,
     
     //tray top
-    -0.6f, -0.5f, -1.0f,
-    -0.6f, -0.5f, -0.7f,
-    0.3f, -0.5f, -1.0f,
+    -0.6f, -0.5f, -1.0f,    1.0f, 1.0f, 1.0f,
+    -0.6f, -0.5f, -0.7f,    1.0f, 1.0f, 1.0f,
+    0.3f, -0.5f, -1.0f,     1.0f, 1.0f, 1.0f,
 
-    0.3f, -0.5f, -1.0f,
-    -0.6f, -0.5f, -0.7f,
-    0.3f, -0.5f, -0.7f,
+    0.3f, -0.5f, -1.0f,     1.0f, 1.0f, 1.0f,
+    -0.6f, -0.5f, -0.7f,    1.0f, 1.0f, 1.0f,
+    0.3f, -0.5f, -0.7f,     1.0f, 1.0f, 1.0f,
     
     //tray sides
-    -0.6f, -0.5f, -1.0f,
-    -0.6f, -0.8f, -1.0f,
-    -0.6f, -0.5f, -0.7f,
+    -0.6f, -0.5f, -1.0f,    1.0f, 1.0f, 1.0f,
+    -0.6f, -0.8f, -1.0f,    1.0f, 1.0f, 1.0f,
+    -0.6f, -0.5f, -0.7f,    1.0f, 1.0f, 1.0f,
 
-    0.3f, -0.5f, -1.0f,
-    0.3f, -0.8f, -1.0f,
-    0.3f, -0.5f, -0.7f,
+    0.3f, -0.5f, -1.0f,     1.0f, 1.0f, 1.0f,
+    0.3f, -0.8f, -1.0f,     1.0f, 1.0f, 1.0f,
+    0.3f, -0.5f, -0.7f,     1.0f, 1.0f, 1.0f,
 
     //tray
-    -0.6f, -0.9f, -1.0f,
-    -0.6f, -0.8f, -0.7f,
-    0.3f, -0.9f, -1.0f,
+    -0.6f, -0.9f, -1.0f,    1.0f, 1.0f, 1.0f,
+    -0.6f, -0.8f, -0.7f,    1.0f, 1.0f, 1.0f,
+    0.3f, -0.9f, -1.0f,     1.0f, 1.0f, 1.0f,
 
-    0.3f, -0.9f, -1.0f,
-    -0.6f, -0.8f, -0.7f,
-    0.3f, -0.8f, -0.7f,
+    0.3f, -0.9f, -1.0f,     1.0f, 1.0f, 1.0f,
+    -0.6f, -0.8f, -0.7f,    1.0f, 1.0f, 1.0f,
+    0.3f, -0.8f, -0.7f,     1.0f, 1.0f, 1.0f,
 };
 
 float vertices3[] = {
-    // position (x, y, z)
+    // position (x, y, z)   color (r, g, b)
 
     // top circle
-    0.00,  1.00,  0.00,
-    0.55,  1.00,  0.00,
-    0.39,  1.00,  0.39,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.55,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.39,  1.00,  0.39,     1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00,  0.00,
-    0.39,  1.00,  0.39,
-    0.00,  1.00,  0.55,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.39,  1.00,  0.39,     1.0f, 1.0f, 1.0f,
+    0.00,  1.00,  0.55,     1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00,  0.00,
-    0.00,  1.00,  0.55,
-    -0.39,  1.00,  0.39,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.00,  1.00,  0.55,     1.0f, 1.0f, 1.0f,
+    -0.39,  1.00,  0.39,    1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00,  0.00,
-    -0.39,  1.00,  0.39,
-    -0.55,  1.00,  0.00,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    -0.39,  1.00,  0.39,    1.0f, 1.0f, 1.0f,
+    -0.55,  1.00,  0.00,    1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00,  0.00,
-    -0.55,  1.00,  0.00,
-    -0.39,  1.00, -0.39,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    -0.55,  1.00,  0.00,    1.0f, 1.0f, 1.0f,
+    -0.39,  1.00, -0.39,    1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00,  0.00,
-    -0.39,  1.00, -0.39,
-    0.00,  1.00, -0.55,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    -0.39,  1.00, -0.39,    1.0f, 1.0f, 1.0f,
+    0.00,  1.00, -0.55,     1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00,  0.00,
-    0.00,  1.00, -0.55,
-    0.39,  1.00, -0.39,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.00,  1.00, -0.55,     1.0f, 1.0f, 1.0f,
+    0.39,  1.00, -0.39,     1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00,  0.00,
-    0.39,  1.00, -0.39,
-    0.55,  1.00,  0.00,
+    0.00,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.39,  1.00, -0.39,     1.0f, 1.0f, 1.0f,
+    0.55,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
 
     // bottom circle
-    0.00, -1.00,  0.00,
-    0.39, -1.00,  0.39,
-    0.55, -1.00,  0.00,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.39, -1.00,  0.39,     1.0f, 1.0f, 1.0f,
+    0.55, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
 
-    0.00, -1.00,  0.00,
-    0.00, -1.00,  0.55,
-    0.39, -1.00,  0.39,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.00, -1.00,  0.55,     1.0f, 1.0f, 1.0f,
+    0.39, -1.00,  0.39,     1.0f, 1.0f, 1.0f,
 
-    0.00, -1.00,  0.00,
-    -0.39, -1.00,  0.39,
-    0.00, -1.00,  0.55,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    -0.39, -1.00,  0.39,    1.0f, 1.0f, 1.0f,
+    0.00, -1.00,  0.55,     1.0f, 1.0f, 1.0f,
 
-    0.00, -1.00,  0.00,
-    -0.55, -1.00,  0.00,
-    -0.39, -1.00,  0.39,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    -0.55, -1.00,  0.00,    1.0f, 1.0f, 1.0f,
+    -0.39, -1.00,  0.39,    1.0f, 1.0f, 1.0f,
 
-    0.00, -1.00,  0.00,
-    -0.39, -1.00, -0.39,
-    -0.55, -1.00,  0.00,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    -0.39, -1.00, -0.39,    1.0f, 1.0f, 1.0f,
+    -0.55, -1.00,  0.00,    1.0f, 1.0f, 1.0f,
 
-    0.00, -1.00,  0.00,
-    0.00, -1.00, -0.55,
-    -0.39, -1.00, -0.39,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.00, -1.00, -0.55,     1.0f, 1.0f, 1.0f,
+    -0.39, -1.00, -0.39,    1.0f, 1.0f, 1.0f,
 
-    0.00, -1.00,  0.00,
-    0.39, -1.00, -0.39,
-    0.00, -1.00, -0.55,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.39, -1.00, -0.39,     1.0f, 1.0f, 1.0f,
+    0.00, -1.00, -0.55,     1.0f, 1.0f, 1.0f,
 
-    0.00, -1.00,  0.00,
-    0.55, -1.00,  0.00,
-    0.39, -1.00, -0.39,
+    0.00, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.55, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.39, -1.00, -0.39,     1.0f, 1.0f, 1.0f,
 
     //Walls
-    0.55,  1.00,  0.00,
-    0.55, -1.00,  0.00,
-    0.39,  1.00,  0.39,
-    0.39,  1.00,  0.39,
-    0.55, -1.00,  0.00,
-    0.39, -1.00,  0.39,
+    
 
-    0.39,  1.00,  0.39,
-    0.39, -1.00,  0.39,
-    0.00,  1.00,  0.55,
-    0.00,  1.00,  0.55,
-    0.39, -1.00,  0.39,
-    0.00, -1.00,  0.55,
+    0.55,  1.00,  0.00,     0.0f, 0.0f, 1.0f,
+    0.55, -1.00,  0.00,     0.0f, 0.0f, 1.0f,
+    0.39,  1.00,  0.39,     0.0f, 0.0f, 1.0f,
+    0.39,  1.00,  0.39,     0.0f, 0.0f, 1.0f,
+    0.55, -1.00,  0.00,     0.0f, 0.0f, 1.0f,
+    0.39, -1.00,  0.39,     0.0f, 0.0f, 1.0f,
 
-    0.00,  1.00,  0.55,
-    0.00, -1.00,  0.55,
-    -0.39,  1.00,  0.39,
-    -0.39,  1.00,  0.39,
-    0.00, -1.00,  0.55,
-    -0.39, -1.00,  0.39,
+    0.39,  1.00,  0.39,     0.0f, 0.0f, 1.0f,
+    0.39, -1.00,  0.39,     0.0f, 0.0f, 1.0f,
+    0.00,  1.00,  0.55,     0.0f, 0.0f, 1.0f,
+    0.00,  1.00,  0.55,     0.0f, 0.0f, 1.0f,
+    0.39, -1.00,  0.39,     0.0f, 0.0f, 1.0f,
+    0.00, -1.00,  0.55,     0.0f, 0.0f, 1.0f,
 
-    -0.39,  1.00,  0.39,
-    -0.39, -1.00,  0.39,
-    -0.55,  1.00,  0.00,
-    -0.55,  1.00,  0.00,
-    -0.39, -1.00,  0.39,
-    -0.55, -1.00,  0.00,
+    0.00,  1.00,  0.55,     0.0f, 0.0f, 1.0f,
+    0.00, -1.00,  0.55,     0.0f, 0.0f, 1.0f,
+    -0.39,  1.00,  0.39,    0.0f, 0.0f, 1.0f,
+    -0.39,  1.00,  0.39,    0.0f, 0.0f, 1.0f,
+    0.00, -1.00,  0.55,     0.0f, 0.0f, 1.0f,
+    -0.39, -1.00,  0.39,    0.0f, 0.0f, 1.0f,
 
-    -0.55,  1.00,  0.00,
-    -0.55, -1.00,  0.00,
-    -0.39,  1.00, -0.39,
-    -0.39,  1.00, -0.39,
-    -0.55, -1.00,  0.00,
-    -0.39, -1.00, -0.39,
+    -0.39,  1.00,  0.39,    1.0f, 1.0f, 1.0f,
+    -0.39, -1.00,  0.39,    1.0f, 1.0f, 1.0f,
+    -0.55,  1.00,  0.00,    1.0f, 1.0f, 1.0f,
+    -0.55,  1.00,  0.00,    1.0f, 1.0f, 1.0f,
+    -0.39, -1.00,  0.39,    1.0f, 1.0f, 1.0f,
+    -0.55, -1.00,  0.00,    1.0f, 1.0f, 1.0f,
 
-    -0.39,  1.00, -0.39,
-    -0.39, -1.00, -0.39,
-    0.00,  1.00, -0.55,
-    0.00,  1.00, -0.55,
-    -0.39, -1.00, -0.39,
-    0.00, -1.00, -0.55,
+    -0.55,  1.00,  0.00,    1.0f, 1.0f, 1.0f,
+    -0.55, -1.00,  0.00,    1.0f, 1.0f, 1.0f,
+    -0.39,  1.00, -0.39,    1.0f, 1.0f, 1.0f,
+    -0.39,  1.00, -0.39,    1.0f, 1.0f, 1.0f,
+    -0.55, -1.00,  0.00,    1.0f, 1.0f, 1.0f,
+    -0.39, -1.00, -0.39,    1.0f, 1.0f, 1.0f,
 
-    0.00,  1.00, -0.55,
-    0.00, -1.00, -0.55,
-    0.39,  1.00, -0.39,
-    0.39,  1.00, -0.39,
-    0.00, -1.00, -0.55,
-    0.39, -1.00, -0.39,
+    -0.39,  1.00, -0.39,    1.0f, 1.0f, 1.0f,
+    -0.39, -1.00, -0.39,    1.0f, 1.0f, 1.0f,
+    0.00,  1.00, -0.55,     1.0f, 1.0f, 1.0f,
+    0.00,  1.00, -0.55,     1.0f, 1.0f, 1.0f,
+    -0.39, -1.00, -0.39,    1.0f, 1.0f, 1.0f,
+    0.00, -1.00, -0.55,     1.0f, 1.0f, 1.0f,
 
-    0.39,  1.00, -0.39,
-    0.39, -1.00, -0.39,
-    0.55,  1.00,  0.00,
-    0.55,  1.00,  0.00,
-    0.39, -1.00, -0.39,
-    0.55, -1.00,  0.00,
+    0.00,  1.00, -0.55,     1.0f, 1.0f, 1.0f,
+    0.00, -1.00, -0.55,     1.0f, 1.0f, 1.0f,
+    0.39,  1.00, -0.39,     1.0f, 1.0f, 1.0f,
+    0.39,  1.00, -0.39,     1.0f, 1.0f, 1.0f,
+    0.00, -1.00, -0.55,     1.0f, 1.0f, 1.0f,
+    0.39, -1.00, -0.39,     1.0f, 1.0f, 1.0f,
+
+    0.39,  1.00, -0.39,     1.0f, 1.0f, 1.0f,
+    0.39, -1.00, -0.39,     1.0f, 1.0f, 1.0f,
+    0.55,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.55,  1.00,  0.00,     1.0f, 1.0f, 1.0f,
+    0.39, -1.00, -0.39,     1.0f, 1.0f, 1.0f,
+    0.55, -1.00,  0.00,     1.0f, 1.0f, 1.0f,
 };
 
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
@@ -517,8 +519,10 @@ bool setup()
     glBindBuffer(GL_ARRAY_BUFFER, vbo2);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) (3 * sizeof(float)));
     glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
 
     // important: if you have more vertex arrays to draw, make sure you separately define them
     // with unique VAO and VBO IDs, and follow the same process above to upload them to the GPU
@@ -529,8 +533,10 @@ bool setup()
     glBindBuffer(GL_ARRAY_BUFFER, vbo3);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices3), vertices3, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) (3 * sizeof(float)));
     glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
 
     // load our shader program
     shader = gdevLoadShader("demo1.vs", "demo1.fs");
@@ -551,6 +557,7 @@ bool setup()
 
 float angle = 0;
 float specularity = 2.0;
+float coinScale = 1.0f;
 
 // called by the main function to do rendering per frame
 void render()
@@ -646,10 +653,14 @@ void render()
     //glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
 
     // Draw Third Nonagon
+    float coinPosition = sin((float)glfwGetTime()) * 2;
+
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.0f, 0.0f, 2.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, coinPosition));
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(2.0, 2.0, 1.0));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(coinScale, coinScale, coinScale/2));
 
     normalMatrix = glm::transpose(glm::inverse(modelMatrix));
 
@@ -667,6 +678,7 @@ void render()
 
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0, 1.0, 1.0));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 3.0f));
 
     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
             1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -675,14 +687,19 @@ void render()
     glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"),
             1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices2) / (3 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices2) / (6 * sizeof(float)));
 
     // Bind and Draw Can VAO
     glBindVertexArray(vao3);
 
+    float canPosition = sin((float)glfwGetTime()) * 2;
+
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(2.0f, 0.5f, -2.0f));
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0, 1.0, 1.0));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, -0.75f, 2.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, glm::max(-canPosition, -0.75f), -coinPosition));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(0.4, 0.5, 0.5));
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    modelMatrix = glm::rotate(modelMatrix, float(glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
 
     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
             1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -691,7 +708,7 @@ void render()
     glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"),
             1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices2) / (3 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices2) / (6 * sizeof(float)));
 }
 
 /*****************************************************************************/
@@ -706,6 +723,10 @@ void handleKeys(GLFWwindow* pWindow, int key, int scancode, int action, int mode
         angle += 0.5;
     if (key == GLFW_KEY_D && action == GLFW_PRESS)
         angle -= 0.5;
+    if (key == GLFW_KEY_W && action == GLFW_PRESS)
+        coinScale += 0.5f;
+    if (key == GLFW_KEY_S && action == GLFW_PRESS)
+        coinScale -= 0.5f;
     if (key == GLFW_KEY_E && action == GLFW_PRESS)
         fabs(specularity *= 2.0);
     if (key == GLFW_KEY_Q && action == GLFW_PRESS)
